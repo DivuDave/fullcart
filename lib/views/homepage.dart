@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fullcart/models/custom_elevated_button.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
+import 'package:fullcart/views/auth/launguage.dart';
 import 'package:get/get.dart';
+
+import 'auth/register_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,46 +18,91 @@ class HomePage extends StatelessWidget {
             height: 690,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjzIaDnt-PuFeDfYWP5CFlwsjuO_0ZP8yBjw&usqp=CAU"),
-              ),
+              color: ColorThemes.silver0xffc9c0b7,
             ),
             child: Column(
               children: [
                 SizedBox(
                   height: 40,
                 ),
-                Center(
-                  child: StyleFor100(
-                    text: "Love  To  Shop  With  Fullcart",
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 20.0,
+                    left: 30.0,
+                    right: 10,
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Fullcart",
+                        style: FontStyles.for25(
+                          fontColor: ColorThemes.orange0xffed3454,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(
-                  height: 30,
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 30.0,
+                    right: 10,
+                  ),
+                  child: Text(
+                    "Love Yourself Better",
+                    style: FontStyles.for62(
+                      fontColor: ColorThemes.white0xffffffff,
+                    ),
+                  ),
                 ),
-                CustomElevatedButton(
-                  color: ColorThemes.orange0xffed3454,
-                  height: 50,
-                  width: 380,
-                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 40,
+                    ),
+                    GestureDetector(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Shop Now",
+                            style: FontStyles.for20(
+                              fontColor: ColorThemes.orange0xffed3454,
+                            ),
+                          ),
+                          Container(
+                            width: 90,
+                            height: 3,
+                            color: ColorThemes.white0xffffffff,
+                          )
+                        ],
+                      ),
+                      onTap: () {
+                        Get.to(Language());
+                      },
+                    ),
+                  ],
+                )
               ],
             ),
           ),
-          Container(
-            alignment: Alignment.topCenter,
-            height: 690,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(boxShadow: [
-              BoxShadow(
-                color: ColorThemes.peach0xfff2b6a5.withOpacity(0.3),
-                spreadRadius: 20,
-                blurRadius: 5,
-                offset: Offset(10, 10),
+          Positioned(
+            top: 350,
+            child: Container(
+              height: 500,
+              width: 415,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(50),
+                  topRight: Radius.circular(50),
+                ),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8OsmD5bL128YE99_R2LJdGUjFfK8_oyxopw&usqp=CAU"),
+                ),
               ),
-            ]),
-          ),
+            ),
+          )
         ],
       ),
     );
