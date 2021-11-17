@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:fullcart/controllers/user_details_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
 import 'package:fullcart/views/auth/login_screen.dart';
-import 'package:fullcart/views/auth/register_screen.dart';
+import 'package:fullcart/views/auth/sign_up_screen.dart';
 import 'package:fullcart/views/widgets/custom_top_brands_container.dart';
 import 'package:get/get.dart';
 
 class TutorialForTopBrands extends StatelessWidget {
-  const TutorialForTopBrands({Key? key}) : super(key: key);
+ 
+  TutorialForTopBrands({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorThemes.black0xff202124,
+      backgroundColor: ColorThemes.black0xff010101,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -112,7 +114,7 @@ class TutorialForTopBrands extends StatelessWidget {
               Text(
                 "Discover products easily by swiping",
                 style: FontStyles.for16(
-                  fontColor: ColorThemes.darkGrey0xFF7F8185,
+                  fontColor: ColorThemes.grey0xFF7F8185,
                 ),
               ),
             ],
@@ -125,7 +127,7 @@ class TutorialForTopBrands extends StatelessWidget {
               Text(
                 "from one brand to another",
                 style: FontStyles.for16(
-                  fontColor: ColorThemes.darkGrey0xFF7F8185,
+                  fontColor: ColorThemes.grey0xFF7F8185,
                 ),
               ),
             ],
@@ -156,7 +158,7 @@ class TutorialForTopBrands extends StatelessWidget {
                   ],
                 ),
                 onTap: () {
-                  Get.to(RegisterScreen());
+                  Get.to(SignUpScreen());
                 },
               ),
             ],

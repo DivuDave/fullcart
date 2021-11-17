@@ -1,5 +1,30 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class UserDetailsController extends GetxController{
-  
+class UserDetailsController extends GetxController {
+  TextEditingController nameTextController = TextEditingController();
+  TextEditingController emailTextController = TextEditingController();
+  TextEditingController passwordTextController = TextEditingController();
+  String? _name = "".obs.toString();
+  set name(String n) {
+    _name = n;
+    update();
+  }
+
+  String get name => _name!;
+  String? _email = "".obs.toString();
+  set email(String n) {
+    _email = n;
+    update();
+  }
+
+  String get email => _email!;
+
+  String? _password = "".obs.toString();
+  set password(String n) {
+    _password = n;
+    update();
+  }
+
+  String get password => _password!;
 }

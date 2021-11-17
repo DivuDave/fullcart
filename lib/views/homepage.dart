@@ -4,7 +4,7 @@ import 'package:fullcart/utilities/style_utilities.dart';
 import 'package:fullcart/views/auth/launguage.dart';
 import 'package:get/get.dart';
 
-import 'auth/register_screen.dart';
+import 'auth/sign_up_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
                       Text(
                         "Fullcart",
                         style: FontStyles.for25(
-                          fontColor: ColorThemes.orange0xffed3454,
+                          fontColor: ColorThemes.pink0xffed3454,
                         ),
                       ),
                     ],
@@ -66,7 +66,7 @@ class HomePage extends StatelessWidget {
                           Text(
                             "Shop Now",
                             style: FontStyles.for20(
-                              fontColor: ColorThemes.orange0xffed3454,
+                              fontColor: ColorThemes.pink0xffed3454,
                             ),
                           ),
                           Container(

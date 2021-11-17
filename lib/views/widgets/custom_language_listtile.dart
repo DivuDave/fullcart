@@ -41,7 +41,7 @@ class CustomLanguageListtile extends StatelessWidget {
               style: FontStyles.for20(fontColor: ColorThemes.silver0xffc9c0b7),
             ),
             leading: Radio(
-              activeColor: ColorThemes.orange0xffed3454,
+              activeColor: ColorThemes.pink0xffed3454,
               value: value,
               groupValue: groupValue,
               onChanged: onChanged,

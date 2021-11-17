@@ -8,18 +8,19 @@ import 'package:fullcart/views/widgets/custom_social_account_container.dart';
 import 'package:fullcart/views/widgets/custom_textField.dart';
 import 'package:get/get.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key}) : super(key: key);
-  final GlobalKey<FormState> formkey1 = GlobalKey<FormState>();
+// ignore: must_be_immutable
+class SignUpScreen extends StatelessWidget {
+  SignUpScreen({Key? key}) : super(key: key);
   final UserDetailsController u =
-      Get.find(tag: UserDetailsController().toString());
+      Get.put(UserDetailsController(), tag: UserDetailsController().toString());
 
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorThemes.white0xffffffff,
       body: Form(
-        key: formkey1,
+        key: formKey,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -41,7 +42,7 @@ class LoginScreen extends StatelessWidget {
                     width: 120,
                   ),
                   Text(
-                    "Log In",
+                    "Sign Up",
                     style: FontStyles.for20(
                       fontColor: ColorThemes.black0xff010101,
                     ),
@@ -51,8 +52,33 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
+              Column(
+                children: [
+                  CustomTextField(
+                    controller: u.nameTextController,
+                    onChanged: (value) {
+                      u.name = u.nameTextController.text.obs.toString();
+                    },
+                    hintText: "Your Name",
+                    labelText: "Your Name",
+                  ),
+                  CustomTextField(
+                    controller: u.nameTextController,
+                    width: 350,
+                    hintText: '',
+                    labelText: "",
+                    onChanged: (value) {
+                      u.nameTextController.text.obs.toString() == ""
+                          ? Text("Enter Name")
+                          : SizedBox();
+                    },
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
               CustomTextField(
-                width: 350,
                 controller: u.emailTextController,
                 hintText: "Email",
                 labelText: "Email",
@@ -60,24 +86,33 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
+              CustomTextField(
+                controller: u.passwordTextController,
+                hintText: "Password",
+                labelText: "Password",
+              ),
+              SizedBox(
+                height: 30,
+              ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    width: 35,
+                  Text(
+                    "Terms of Use",
+                    style: FontStyles.for14(
+                      fontColor: ColorThemes.darkGrey0xFF4A4B4E,
+                    ),
                   ),
-                  CustomTextField(
-                    width: 250,
-                    controller: u.passwordTextController,
-                    hintText: "Password",
-                    labelText: "Password",
+                  Text(
+                    " and",
+                    style: FontStyles.for14(
+                      fontColor: ColorThemes.grey0xFF7F8185,
+                    ),
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Forgot?",
-                      style: FontStyles.for16(
-                        fontColor: ColorThemes.grey0xFF7F8185,
-                      ),
+                  Text(
+                    " Privacy Policy",
+                    style: FontStyles.for14(
+                      fontColor: ColorThemes.darkGrey0xFF4A4B4E,
                     ),
                   ),
                 ],
@@ -87,7 +122,7 @@ class LoginScreen extends StatelessWidget {
               ),
               CustomElevatedButton(
                 onPressed: () {
-                  if (formkey1.currentState!.validate()) {
+                  if (formKey.currentState!.validate()) {
                     u.name = u.nameTextController.text;
                     u.email = u.emailTextController.text;
                     u.password = u.passwordTextController.text;
@@ -96,7 +131,7 @@ class LoginScreen extends StatelessWidget {
                     Get.snackbar("Error", "Enter Valid Details");
                   }
                 },
-                buttonName: "Log In",
+                buttonName: "Sign Up",
                 color: ColorThemes.black0xff010101,
                 height: 50,
                 width: 350,

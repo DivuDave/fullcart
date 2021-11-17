@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fullcart/controllers/radio_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
-import 'package:fullcart/views/auth/register_screen.dart';
+import 'package:fullcart/views/auth/sign_up_screen.dart';
 import 'package:fullcart/views/tutorial_for_top_brands.dart';
 import 'package:fullcart/views/widgets/custom_elevated_button.dart';
 import 'package:fullcart/views/widgets/custom_language_listtile.dart';
@@ -17,7 +17,7 @@ class Language extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           iconTheme: IconThemeData(
-            color: ColorThemes.orange0xffed3454,
+            color: ColorThemes.pink0xffed3454,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -29,7 +29,7 @@ class Language extends StatelessWidget {
           title: Text(
             "Choose Language",
             style: FontStyles.for25(
-              fontColor: ColorThemes.orange0xffed3454,
+              fontColor: ColorThemes.pink0xffed3454,
             ),
           )),
       backgroundColor: ColorThemes.silver0xffc9c0b7,
@@ -103,8 +103,9 @@ class Language extends StatelessWidget {
                   height: 20,
                 ),
                 CustomElevatedButton(
+                  radius: 0,
                   buttonName: "Continue",
-                  color: ColorThemes.orange0xffed3454,
+                  color: ColorThemes.pink0xffed3454,
                   height: 50,
                   width: 200,
                   onPressed: () {
