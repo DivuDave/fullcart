@@ -5,14 +5,14 @@ class UserDetailsController extends GetxController {
   TextEditingController nameTextController = TextEditingController();
   TextEditingController emailTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
-  String? _name = "".obs.toString();
+  String? _name = "";
   set name(String n) {
     _name = n;
     update();
   }
 
   String get name => _name!;
-  String? _email = "".obs.toString();
+  String? _email = "";
   set email(String n) {
     _email = n;
     update();
@@ -20,7 +20,7 @@ class UserDetailsController extends GetxController {
 
   String get email => _email!;
 
-  String? _password = "".obs.toString();
+  String? _password = "";
   set password(String n) {
     _password = n;
     update();

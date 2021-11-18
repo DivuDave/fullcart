@@ -13,6 +13,7 @@ class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
   final UserDetailsController u =
       Get.put(UserDetailsController(), tag: UserDetailsController().toString());
+  final TextEditingController controller = TextEditingController();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
@@ -55,41 +56,81 @@ class SignUpScreen extends StatelessWidget {
               Column(
                 children: [
                   CustomTextField(
+                    width: 350,
                     controller: u.nameTextController,
                     onChanged: (value) {
-                      u.name = u.nameTextController.text.obs.toString();
+                      u.name = u.nameTextController.text.toString();
+                      u.update();
                     },
                     hintText: "Your Name",
                     labelText: "Your Name",
                   ),
-                  CustomTextField(
-                    controller: u.nameTextController,
-                    width: 350,
-                    hintText: '',
-                    labelText: "",
-                    onChanged: (value) {
-                      u.nameTextController.text.obs.toString() == ""
-                          ? Text("Enter Name")
-                          : SizedBox();
+                  GetBuilder(
+                    init: UserDetailsController(),
+                    builder: (_) {
+                      return Text(
+                        u.nameTextController.text.toString() == ""
+                            ? "Enter name"
+                            : "",
+                        style: FontStyles.forError(
+                          fontColor: ColorThemes.red0xfff20812,
+                        ),
+                      );
                     },
-                  )
+                  ),
                 ],
               ),
               SizedBox(
                 height: 10,
               ),
-              CustomTextField(
-                controller: u.emailTextController,
-                hintText: "Email",
-                labelText: "Email",
+              Column(
+                children: [
+                  CustomTextField(
+                    width: 350,
+                    controller: u.emailTextController,
+                    hintText: "Email",
+                    labelText: "Email",
+                  ),
+                  GetBuilder(
+                    init: UserDetailsController(),
+                    builder: (_) {
+                      return Text(
+                        u.nameTextController.text.toString() == ""
+                            ? "Enter name"
+                            : "",
+                        style: FontStyles.forError(
+                          fontColor: ColorThemes.red0xfff20812,
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
               SizedBox(
                 height: 10,
               ),
-              CustomTextField(
-                controller: u.passwordTextController,
-                hintText: "Password",
-                labelText: "Password",
+              Column(
+                children: [
+                  CustomTextField(
+                    width: 350,
+                    controller: u.passwordTextController,
+                    hintText: "Password",
+                    labelText: "Password",
+                  ),
+                  GetBuilder(
+                    init: UserDetailsController(),
+                    builder: (_) {
+                      return Text(
+                        u.nameTextController.text.toString() == ""
+                            ? "Enter name"
+                            : "",
+                        style: FontStyles.forError(
+                          fontColor: ColorThemes.red0xfff20812,
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
               SizedBox(
                 height: 30,
@@ -122,13 +163,28 @@ class SignUpScreen extends StatelessWidget {
               ),
               CustomElevatedButton(
                 onPressed: () {
-                  if (formKey.currentState!.validate()) {
+                  if (u.nameTextController.text.toString() == "" &&
+                      u.passwordTextController.text.toString() == "" &&
+                      u.emailTextController.text.toString() == "") {
+                    GetBuilder(
+                      init: UserDetailsController(),
+                      builder: (_) {
+                        return Text(
+                          u.nameTextController.text.toString() == ""
+                              ? "Enter name"
+                              : "",
+                          style: FontStyles.forError(
+                            fontColor: ColorThemes.red0xfff20812,
+                          ),
+                        );
+                      },
+                    );
+                    Get.snackbar("Error", "Enter Valid Details");
+                  } else {
                     u.name = u.nameTextController.text;
                     u.email = u.emailTextController.text;
                     u.password = u.passwordTextController.text;
                     Get.to(ShoppingPage());
-                  } else {
-                    Get.snackbar("Error", "Enter Valid Details");
                   }
                 },
                 buttonName: "Sign Up",

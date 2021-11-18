@@ -98,4 +98,15 @@ class FontStyles {
       fontSize: 14,
     );
   }
+
+  static TextStyle forError({
+    @required Color? fontColor,
+    BoldFont fontWeight = BoldFont.bold,
+  }) {
+    return TextStyle(
+      color: fontColor ?? ColorThemes.white0xffffffff,
+      fontWeight: getFontWeight(fontWeight),
+      fontSize: 14,
+    );
+  }
 }
