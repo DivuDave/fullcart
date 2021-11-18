@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fullcart/controllers/user_details_controller.dart';
+import 'package:fullcart/controllers/login_controller.dart';
+import 'package:fullcart/controllers/sign_up_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
 import 'package:fullcart/views/home_screen/shopping_page.dart';
@@ -8,11 +9,13 @@ import 'package:fullcart/views/widgets/custom_social_account_container.dart';
 import 'package:fullcart/views/widgets/custom_textField.dart';
 import 'package:get/get.dart';
 
+import 'forgot_password.dart';
+
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
   final GlobalKey<FormState> formkey1 = GlobalKey<FormState>();
-  final UserDetailsController u =
-      Get.find(tag: UserDetailsController().toString());
+  final LoginController _loginController =
+      Get.put(LoginController(), tag: LoginController().toString());
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +54,41 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              CustomTextField(
-                width: 350,
-                controller: u.emailTextController,
-                hintText: "Email",
-                labelText: "Email",
+              Column(
+                children: [
+                  CustomTextField(
+                    width: 350,
+                    controller: _loginController.loginEmailTextController,
+                    hintText: "Email",
+                    labelText: "Email",
+                    onChanged: (value) {
+                      _loginController.email = _loginController
+                          .loginEmailTextController.text
+                          .toString();
+                      _loginController.update();
+                    },
+                    validator: (value) {
+                      if (!GetUtils.isEmail(value!)) {
+                        return "Enter valid email";
+                      }
+                    },
+                  ),
+                  GetBuilder<LoginController>(
+                    init: _loginController,
+                    builder: (_) {
+                      return Text(
+                        _loginController.loginEmailTextController.text
+                                    .toString() ==
+                                ""
+                            ? "Enter email"
+                            : "",
+                        style: FontStyles.forError(
+                          fontColor: ColorThemes.red0xfff20812,
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
               SizedBox(
                 height: 10,
@@ -65,20 +98,55 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(
                     width: 35,
                   ),
-                  CustomTextField(
-                    width: 250,
-                    controller: u.passwordTextController,
-                    hintText: "Password",
-                    labelText: "Password",
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Forgot?",
-                      style: FontStyles.for16(
-                        fontColor: ColorThemes.grey0xFF7F8185,
+                  Column(
+                    children: [
+                      CustomTextField(
+                        suffixIcon: TextButton(
+                          onPressed: () {
+                            Get.to(ForgotPasswordScreen());
+                          },
+                          child: Text(
+                            "Forgot?",
+                            style: FontStyles.for16(
+                              fontColor: ColorThemes.grey0xFF7F8185,
+                            ),
+                          ),
+                        ),
+                        width: 350,
+                        controller:
+                            _loginController.loginPasswordTextController,
+                        hintText: "Password",
+                        labelText: "Password",
+                        onChanged: (value) {
+                          _loginController.password = _loginController
+                              .loginPasswordTextController.text
+                              .toString();
+                          _loginController.update();
+                        },
+                        validator: (value) {
+                          RegExp regex = RegExp(
+                              r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+                          if (!regex.hasMatch(value!)) {
+                            return "Enter valid password";
+                          }
+                        },
                       ),
-                    ),
+                      GetBuilder(
+                        init: _loginController,
+                        builder: (_) {
+                          return Text(
+                            _loginController.loginPasswordTextController.text
+                                        .toString() ==
+                                    ""
+                                ? "Enter password"
+                                : "",
+                            style: FontStyles.forError(
+                              fontColor: ColorThemes.red0xfff20812,
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -87,10 +155,23 @@ class LoginScreen extends StatelessWidget {
               ),
               CustomElevatedButton(
                 onPressed: () {
+                  if (_loginController.loginEmailTextController.text
+                              .toString() !=
+                          "" &&
+                      _loginController.loginPasswordTextController.text
+                              .toString() !=
+                          "") {
+                    Get.to(ShoppingPage());
+                  } else {
+                    Get.snackbar("Error", "Enter Details");
+                  }
+
                   if (formkey1.currentState!.validate()) {
-                    u.name = u.nameTextController.text;
-                    u.email = u.emailTextController.text;
-                    u.password = u.passwordTextController.text;
+                    _loginController.email =
+                        _loginController.loginEmailTextController.text;
+                    _loginController.password =
+                        _loginController.loginPasswordTextController.text;
+
                     Get.to(ShoppingPage());
                   } else {
                     Get.snackbar("Error", "Enter Valid Details");

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fullcart/controllers/sign_up_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
+import 'package:get/get.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   final double? height;
@@ -9,7 +11,7 @@ class CustomElevatedButton extends StatelessWidget {
   final String? buttonName;
   final void Function()? onPressed;
 
-  const CustomElevatedButton({
+  CustomElevatedButton({
     Key? key,
     this.height,
     this.width,

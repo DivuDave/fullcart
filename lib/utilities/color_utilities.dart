@@ -6,6 +6,7 @@ class ColorThemes {
   static const Color black0xff010101 = Color(0xff010101);
   static const Color transparent0x00000000 = Color(0x00000000);
   static const Color white0xffffffff = Color(0xffffffff);
+  static const Color offWhite0xFFF3F3F3 = Color(0xFFF3F3F3);
   static const Color grey0xFF7F8185 = Color(0xFF7F8185);
   static const Color darkGrey0xFF4A4B4E = Color(0xFF4A4B4E);
   static const Color facebookBlue0xff0279fc = Color(0xff0279fc);

@@ -80,11 +80,13 @@ class FontStyles {
   static TextStyle for16({
     @required Color? fontColor,
     BoldFont fontWeight = BoldFont.regular,
+    TextDecoration? decoration,
   }) {
     return TextStyle(
       color: fontColor ?? ColorThemes.white0xffffffff,
       fontWeight: getFontWeight(fontWeight),
       fontSize: 16,
+      decoration: decoration,
     );
   }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fullcart/controllers/user_details_controller.dart';
+import 'package:fullcart/controllers/sign_up_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
 import 'package:fullcart/views/home_screen/shopping_page.dart';
@@ -11,9 +11,8 @@ import 'package:get/get.dart';
 // ignore: must_be_immutable
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
-  final UserDetailsController u =
-      Get.put(UserDetailsController(), tag: UserDetailsController().toString());
-  final TextEditingController controller = TextEditingController();
+  final SignUpController _signUpController =
+      Get.put(SignUpController(), tag: SignUpController().toString());
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
@@ -57,19 +56,26 @@ class SignUpScreen extends StatelessWidget {
                 children: [
                   CustomTextField(
                     width: 350,
-                    controller: u.nameTextController,
+                    controller: _signUpController.nameTextController,
                     onChanged: (value) {
-                      u.name = u.nameTextController.text.toString();
-                      u.update();
+                      _signUpController.name =
+                          _signUpController.nameTextController.text.toString();
+                      _signUpController.update();
                     },
                     hintText: "Your Name",
                     labelText: "Your Name",
+                    validator: (value) {
+                      if (!GetUtils.isAlphabetOnly(value!)) {
+                        return "Enter valid name";
+                      }
+                    },
                   ),
-                  GetBuilder(
-                    init: UserDetailsController(),
+                  GetBuilder<SignUpController>(
+                    init: _signUpController,
                     builder: (_) {
                       return Text(
-                        u.nameTextController.text.toString() == ""
+                        _signUpController.nameTextController.text.toString() ==
+                                ""
                             ? "Enter name"
                             : "",
                         style: FontStyles.forError(
@@ -87,16 +93,27 @@ class SignUpScreen extends StatelessWidget {
                 children: [
                   CustomTextField(
                     width: 350,
-                    controller: u.emailTextController,
+                    controller: _signUpController.emailTextController,
                     hintText: "Email",
                     labelText: "Email",
+                    onChanged: (value) {
+                      _signUpController.email =
+                          _signUpController.emailTextController.text.toString();
+                      _signUpController.update();
+                    },
+                    validator: (value) {
+                      if (!GetUtils.isEmail(value!)) {
+                        return "Enter valid email";
+                      }
+                    },
                   ),
-                  GetBuilder(
-                    init: UserDetailsController(),
+                  GetBuilder<SignUpController>(
+                    init: _signUpController,
                     builder: (_) {
                       return Text(
-                        u.nameTextController.text.toString() == ""
-                            ? "Enter name"
+                        _signUpController.emailTextController.text.toString() ==
+                                ""
+                            ? "Enter email"
                             : "",
                         style: FontStyles.forError(
                           fontColor: ColorThemes.red0xfff20812,
@@ -113,16 +130,31 @@ class SignUpScreen extends StatelessWidget {
                 children: [
                   CustomTextField(
                     width: 350,
-                    controller: u.passwordTextController,
+                    controller: _signUpController.passwordTextController,
                     hintText: "Password",
                     labelText: "Password",
+                    onChanged: (value) {
+                      _signUpController.password = _signUpController
+                          .passwordTextController.text
+                          .toString();
+                      _signUpController.update();
+                    },
+                    validator: (value) {
+                      RegExp regex = RegExp(
+                          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+                      if (!regex.hasMatch(value!)) {
+                        return "Enter valid password";
+                      }
+                    },
                   ),
                   GetBuilder(
-                    init: UserDetailsController(),
+                    init: _signUpController,
                     builder: (_) {
                       return Text(
-                        u.nameTextController.text.toString() == ""
-                            ? "Enter name"
+                        _signUpController.passwordTextController.text
+                                    .toString() ==
+                                ""
+                            ? "Enter password"
                             : "",
                         style: FontStyles.forError(
                           fontColor: ColorThemes.red0xfff20812,
@@ -163,28 +195,18 @@ class SignUpScreen extends StatelessWidget {
               ),
               CustomElevatedButton(
                 onPressed: () {
-                  if (u.nameTextController.text.toString() == "" &&
-                      u.passwordTextController.text.toString() == "" &&
-                      u.emailTextController.text.toString() == "") {
-                    GetBuilder(
-                      init: UserDetailsController(),
-                      builder: (_) {
-                        return Text(
-                          u.nameTextController.text.toString() == ""
-                              ? "Enter name"
-                              : "",
-                          style: FontStyles.forError(
-                            fontColor: ColorThemes.red0xfff20812,
-                          ),
-                        );
-                      },
-                    );
-                    Get.snackbar("Error", "Enter Valid Details");
-                  } else {
-                    u.name = u.nameTextController.text;
-                    u.email = u.emailTextController.text;
-                    u.password = u.passwordTextController.text;
-                    Get.to(ShoppingPage());
+                  if (formKey.currentState!.validate()) {
+                    if (_signUpController.nameTextController.text.toString() !=
+                            "" &&
+                        _signUpController.passwordTextController.text
+                                .toString() !=
+                            "" &&
+                        _signUpController.emailTextController.text.toString() !=
+                            "") {
+                      Get.to(ShoppingPage());
+                    } else {
+                      Get.snackbar("Error", "Enter Details");
+                    }
                   }
                 },
                 buttonName: "Sign Up",
