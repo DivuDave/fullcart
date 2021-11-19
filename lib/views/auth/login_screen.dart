@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fullcart/controllers/login_controller.dart';
-import 'package:fullcart/controllers/sign_up_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
 import 'package:fullcart/views/home_screen/shopping_page.dart';

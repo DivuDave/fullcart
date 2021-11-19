@@ -4,7 +4,6 @@ import 'package:fullcart/controllers/login_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
 import 'package:fullcart/views/auth/otp_screen.dart';
-import 'package:fullcart/views/home_screen/shopping_page.dart';
 import 'package:fullcart/views/widgets/custom_elevated_button.dart';
 import 'package:fullcart/views/widgets/custom_textField.dart';
 import 'package:get/get.dart';

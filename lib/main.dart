@@ -8,7 +8,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  RadioController r =
+  final RadioController r =
       Get.put(RadioController(), tag: RadioController().toString());
   @override
   Widget build(BuildContext context) {

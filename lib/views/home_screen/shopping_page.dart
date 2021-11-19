@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:fullcart/controllers/shopping_page_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
-import 'package:fullcart/views/widgets/custom_product_container.dart';
 import 'package:fullcart/views/widgets/custom_top_brands_container.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class ShoppingPage extends StatelessWidget {
   ShoppingPage({Key? key}) : super(key: key);
-  ShoppingPageController _shoppingPageController = Get.put(
+  final ShoppingPageController _shoppingPageController = Get.put(
       ShoppingPageController(),
       tag: ShoppingPageController().toString());
 
@@ -34,7 +32,7 @@ class ShoppingPage extends StatelessWidget {
                 Row(
                   children: [
                     SizedBox(
-                      width: 20,
+                      width: 10,
                     ),
                     Text(
                       "Just Arrivals",
@@ -55,7 +53,48 @@ class ShoppingPage extends StatelessWidget {
                     children:
                         _shoppingPageController.customProductContainerList,
                   ),
-                )
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      "Category",
+                      style: FontStyles.for20(
+                        fontColor: ColorThemes.black0xff010101,
+                        fontWeight: BoldFont.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children:
+                        _shoppingPageController.customCategoryContainerList,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      "Most Popular",
+                      style: FontStyles.for20(
+                        fontColor: ColorThemes.black0xff010101,
+                        fontWeight: BoldFont.bold,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

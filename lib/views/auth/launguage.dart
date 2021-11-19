@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fullcart/controllers/radio_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
-import 'package:fullcart/views/auth/sign_up_screen.dart';
 import 'package:fullcart/views/home_screen/tutorial_for_top_brands.dart';
 import 'package:fullcart/views/widgets/custom_elevated_button.dart';
 import 'package:fullcart/views/widgets/custom_language_listtile.dart';
@@ -11,7 +10,7 @@ import 'package:get/get.dart';
 class Language extends StatelessWidget {
   Language({Key? key}) : super(key: key);
 
-  RadioController r = Get.find(tag: RadioController().toString());
+  final RadioController r = Get.find(tag: RadioController().toString());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -4,8 +4,6 @@ import 'package:fullcart/utilities/style_utilities.dart';
 import 'package:fullcart/views/auth/launguage.dart';
 import 'package:get/get.dart';
 
-import 'auth/sign_up_screen.dart';
-
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -15,7 +13,7 @@ class HomePage extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            height: 690,
+            height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               color: ColorThemes.silver0xffc9c0b7,
@@ -36,7 +34,7 @@ class HomePage extends StatelessWidget {
                       Text(
                         "Fullcart",
                         style: FontStyles.for25(
-                          fontColor: ColorThemes.pink0xffed3454,
+                          fontColor: ColorThemes.skyblue0xff12cad6,
                         ),
                       ),
                     ],
@@ -66,8 +64,11 @@ class HomePage extends StatelessWidget {
                           Text(
                             "Shop Now",
                             style: FontStyles.for20(
-                              fontColor: ColorThemes.pink0xffed3454,
+                              fontColor: ColorThemes.skyblue0xff12cad6,
                             ),
+                          ),
+                          SizedBox(
+                            height: 10,
                           ),
                           Container(
                             width: 90,
@@ -98,7 +99,8 @@ class HomePage extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8OsmD5bL128YE99_R2LJdGUjFfK8_oyxopw&usqp=CAU"),
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8OsmD5bL128YE99_R2LJdGUjFfK8_oyxopw&usqp=CAU",
+                  ),
                 ),
               ),
             ),

@@ -12,4 +12,9 @@ class ColorThemes {
   static const Color facebookBlue0xff0279fc = Color(0xff0279fc);
   static const Color twitterBlue0xff59c8fc = Color(0xff59c8fc);
   static const Color red0xfff20812 = Color(0xfff20812);
+  static const Color lightPeach0xffecbeae = Color(0xffecbeae);
+  static const Color lightPink0xfff7cdce = Color(0xfff7cdce);
+  static const Color tan0xffd4bba3 = Color(0xffd4bba3);
+  static const Color lightBrown0xfff0cfcd = Color(0xfff0cfcd);
+  static const Color skyblue0xff12cad6 = Color(0xFF107E86);
 }
