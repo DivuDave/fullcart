@@ -4,29 +4,58 @@ import 'package:fullcart/utilities/style_utilities.dart';
 import 'package:get/get.dart';
 
 class CustomProductContainer extends StatelessWidget {
-  final double? height;
-  final bool? isCalled;
-  const CustomProductContainer({Key? key, this.height, this.isCalled})
-      : super(key: key);
+  final bool isCalled;
+  final String? url;
+  const CustomProductContainer({
+    Key? key,
+    this.isCalled = true,
+    this.url,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          height: height,
-          width: 130,
-          decoration: BoxDecoration(
-            color: ColorThemes.white0xffffffff,
-            borderRadius: isCalled == true
-                ? BorderRadius.circular(10)
-                : BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
+        Stack(
+          children: [
+            Container(
+              height: 170,
+              width: isCalled ? 130 : 170,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(
+                    url!,
                   ),
-          ),
+                ),
+                color: ColorThemes.white0xffffffff,
+                borderRadius: isCalled
+                    ? BorderRadius.circular(10)
+                    : BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      ),
+              ),
+            ),
+            Positioned(
+              top: 10,
+              left: 90,
+              child: CircleAvatar(
+                radius: 15,
+                backgroundColor: ColorThemes.offWhite0xFFF3F3F3,
+                child: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.favorite,
+                    color: ColorThemes.grey0xFF7F8185,
+                    size: 13,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
-        isCalled == true
+        isCalled
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -35,19 +64,59 @@ class CustomProductContainer extends StatelessWidget {
                   ),
                   Text(
                     "Dio",
-                    style: FontStyles.for14(
+                    style: FontStyles.for16(
                       fontColor: ColorThemes.black0xff010101,
                     ),
                   ),
                   Text(
                     "Capture Totale",
+                    style: FontStyles.for20(
+                      fontColor: ColorThemes.black0xff010101,
+                    ),
                   ),
                   Text(
                     "\$44.99",
+                    style: FontStyles.for16(
+                      fontColor: ColorThemes.black0xff010101,
+                    ),
                   ),
                 ],
               )
-            : Container(),
+            : Container(
+                height: 50,
+                width: 170,
+                decoration: BoxDecoration(
+                  color: ColorThemes.white0xffffffff,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(10),
+                    bottomRight: Radius.circular(10),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Capture Totale",
+                          style: FontStyles.for20(
+                            fontColor: ColorThemes.black0xff010101,
+                          ),
+                        ),
+                        Text(
+                          "\$44.99",
+                          style: FontStyles.for16(
+                            fontColor: ColorThemes.grey0xFF7F8185,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
       ],
     );
   }

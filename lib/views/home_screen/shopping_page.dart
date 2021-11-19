@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:fullcart/controllers/shopping_page_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
 import 'package:fullcart/views/widgets/custom_product_container.dart';
 import 'package:fullcart/views/widgets/custom_top_brands_container.dart';
+import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class ShoppingPage extends StatelessWidget {
-  const ShoppingPage({Key? key}) : super(key: key);
+  ShoppingPage({Key? key}) : super(key: key);
+  ShoppingPageController _shoppingPageController = Get.put(
+      ShoppingPageController(),
+      tag: ShoppingPageController().toString());
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +52,8 @@ class ShoppingPage extends StatelessWidget {
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: [
-                      CustomProductContainer(
-                        isCalled: true,
-                        height: 170,
-                      ),
-                    ],
+                    children:
+                        _shoppingPageController.customProductContainerList,
                   ),
                 )
               ],
