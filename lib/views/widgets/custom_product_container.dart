@@ -67,29 +67,33 @@ class CustomProductContainer extends StatelessWidget {
             ],
           ),
           isCalled
-              ? Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              ? Row(
                   children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      companyName!,
-                      style: FontStyles.for16(
-                        fontColor: ColorThemes.black0xff010101,
-                      ),
-                    ),
-                    Text(
-                      itemName!,
-                      style: FontStyles.for20(
-                        fontColor: ColorThemes.black0xff010101,
-                      ),
-                    ),
-                    Text(
-                      price!,
-                      style: FontStyles.for16(
-                        fontColor: ColorThemes.black0xff010101,
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          companyName!,
+                          style: FontStyles.for16(
+                            fontColor: ColorThemes.black0xff010101,
+                          ),
+                        ),
+                        Text(
+                          itemName!,
+                          style: FontStyles.for20(
+                            fontColor: ColorThemes.black0xff010101,
+                          ),
+                        ),
+                        Text(
+                          price!,
+                          style: FontStyles.for16(
+                            fontColor: ColorThemes.black0xff010101,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 )

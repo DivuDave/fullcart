@@ -16,5 +16,5 @@ class ColorThemes {
   static const Color lightPink0xfff7cdce = Color(0xfff7cdce);
   static const Color tan0xffd4bba3 = Color(0xffd4bba3);
   static const Color lightBrown0xfff0cfcd = Color(0xfff0cfcd);
-  static const Color skyblue0xff12cad6 = Color(0xFF107E86);
+  static const Color purple0xff532c46 = Color(0xff532c46);
 }

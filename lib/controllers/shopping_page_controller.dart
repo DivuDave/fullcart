@@ -1,6 +1,7 @@
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/views/widgets/custom_category_container.dart';
 import 'package:fullcart/views/widgets/custom_product_container.dart';
+import 'package:fullcart/views/widgets/custom_product_list_tile.dart';
 import 'package:get/get.dart';
 
 class ShoppingPageController extends GetxController {
@@ -115,13 +116,11 @@ class ShoppingPageController extends GetxController {
       color: ColorThemes.lightBrown0xfff0cfcd,
     ),
     CustomCategoryContainer(
-      url:
-          "https://cdn-icons.flaticon.com/png/128/5790/premium/5790538.png?token=exp=1637311925~hmac=546fa4b92f8d2ce2b2e04c5f670e4233",
+      url: "https://cdn-icons.flaticon.com/png/128/5790/5790538.png",
       color: ColorThemes.lightPeach0xffecbeae,
     ),
     CustomCategoryContainer(
-      url:
-          "https://cdn-icons.flaticon.com/png/128/4041/premium/4041120.png?token=exp=1637311925~hmac=32d121552cf4603bb4d28f17e6ee3f23",
+      url: "https://cdn-icons.flaticon.com/png/128/4041/4041120.png",
       color: ColorThemes.lightPink0xfff7cdce,
     ),
   ];
@@ -133,4 +132,46 @@ class ShoppingPageController extends GetxController {
 
   List<CustomCategoryContainer> get customCategoryContainerList =>
       _customCategoryContainerList;
+  List<CustomProductListTile> _customProductListTileList = [
+    CustomProductListTile(
+      price: "400/-",
+      itemname: "Tshirt",
+      color: "Color:Blue",
+      age: "Age:20",
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvQh_D1uiPxFOrTFwyHkqTOI5psBJ9k3LNOQ&usqp=CAU",
+    ),
+    CustomProductListTile(
+      itemname: "T-shirt",
+      price: "350/-",
+      age: "Age:15",
+      color: "Color:Blue",
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgkPyawKRX3-9aoRICdB45fMjZEd69Dv3IzA&usqp=CAU",
+    ),
+    CustomProductListTile(
+      itemname: "T-shirt",
+      price: "400/-",
+      age: "Age:22",
+      color: "Color:Peach",
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2K8R0CbMCuqFYVHnRF6RpNZjEa68ela5_ew&usqp=CAU",
+    ),
+    CustomProductListTile(
+      age: "Age:25",
+      itemname: "jeans",
+      price: "500",
+      color: "Color:Blue",
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvne37gWiuwDFbnUtRzPAzrLc96BJrIJd8Ww&usqp=CAU",
+    ),
+  ];
+  set customProductListTile(
+      List<CustomProductListTile> customProductListTileList) {
+    _customProductListTileList = customProductListTileList;
+    update();
+  }
+
+  List<CustomProductListTile> get customProductListTileList =>
+      _customProductListTileList;
 }

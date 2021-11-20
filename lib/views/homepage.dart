@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
                       Text(
                         "Fullcart",
                         style: FontStyles.for25(
-                          fontColor: ColorThemes.skyblue0xff12cad6,
+                          fontColor: ColorThemes.purple0xff532c46,
                         ),
                       ),
                     ],
@@ -64,7 +64,7 @@ class HomePage extends StatelessWidget {
                           Text(
                             "Shop Now",
                             style: FontStyles.for20(
-                              fontColor: ColorThemes.skyblue0xff12cad6,
+                              fontColor: ColorThemes.purple0xff532c46,
                             ),
                           ),
                           SizedBox(

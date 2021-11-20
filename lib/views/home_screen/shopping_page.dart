@@ -95,6 +95,12 @@ class ShoppingPage extends StatelessWidget {
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 20,
+                ),
+                Column(
+                  children: _shoppingPageController.customProductListTileList,
+                )
               ],
             ),
           ),
