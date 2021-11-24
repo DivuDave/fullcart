@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fullcart/controllers/radio_controller.dart';
-import 'package:fullcart/views/homepage.dart';
+import 'package:fullcart/views/screens/home_screen/homepage.dart';
 import 'package:get/get.dart';
 
 void main() {

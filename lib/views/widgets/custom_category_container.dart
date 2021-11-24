@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fullcart/utilities/color_utilities.dart';
 
 class CustomCategoryContainer extends StatelessWidget {
   final String? url;
@@ -14,19 +15,24 @@ class CustomCategoryContainer extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
-        height: 100,
-        width: 100,
         decoration: BoxDecoration(
-          backgroundBlendMode: BlendMode.darken,
           color: color,
-          borderRadius: BorderRadius.circular(20),
-          image: DecorationImage(
-            fit: BoxFit.contain,
-            image: NetworkImage(
-              url!,
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 10,
+              color: ColorThemes.grey0xFF7F8185,
             ),
+          ],
+        ),
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Image.network(url!),
           ),
         ),
+        height: 100,
+        width: 100,
       ),
     );
   }

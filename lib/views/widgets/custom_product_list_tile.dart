@@ -23,6 +23,9 @@ class CustomProductListTile extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
+          SizedBox(
+            width: 10,
+          ),
           Container(
             height: 80,
             width: 80,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fullcart/controllers/shopping_page_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
+import 'package:fullcart/views/screens/home_screen/shop_from_top_brands.dart';
+import 'package:fullcart/views/screens/home_screen/top_brands_collection.dart';
 import 'package:fullcart/views/widgets/custom_top_brands_container.dart';
 import 'package:get/get.dart';
 
@@ -32,32 +34,54 @@ class ShoppingPage extends StatelessWidget {
                 Row(
                   children: [
                     SizedBox(
-                      width: 10,
+                      width: 20,
                     ),
-                    Text(
-                      "Just Arrivals",
-                      style: FontStyles.for20(
-                        fontColor: ColorThemes.black0xff010101,
-                        fontWeight: BoldFont.bold,
+                    Expanded(
+                      child: Text(
+                        "Just Arrivals",
+                        style: FontStyles.for20(
+                          fontColor: ColorThemes.black0xff010101,
+                          fontWeight: BoldFont.bold,
+                        ),
                       ),
                     ),
+                    TextButton(
+                      onPressed: () {
+                        Get.to(TopBrandsCollection());
+                      },
+                      child: Text(
+                        "See More...",
+                        style: FontStyles.for14(
+                          fontColor: ColorThemes.black0xff010101,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
                   ],
-                ),
-                SizedBox(
-                  height: 20,
                 ),
                 SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children:
-                        _shoppingPageController.customProductContainerList,
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Row(
+                        children: _shoppingPageController.justArrivalsList,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                    ],
                   ),
                 ),
                 Row(
                   children: [
                     SizedBox(
-                      width: 10,
+                      width: 20,
                     ),
                     Text(
                       "Category",
@@ -74,8 +98,18 @@ class ShoppingPage extends StatelessWidget {
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children:
-                        _shoppingPageController.customCategoryContainerList,
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Row(
+                        children:
+                            _shoppingPageController.customCategoryContainerList,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(
@@ -84,19 +118,32 @@ class ShoppingPage extends StatelessWidget {
                 Row(
                   children: [
                     SizedBox(
-                      width: 10,
+                      width: 20,
                     ),
-                    Text(
-                      "Most Popular",
-                      style: FontStyles.for20(
-                        fontColor: ColorThemes.black0xff010101,
-                        fontWeight: BoldFont.bold,
+                    Expanded(
+                      child: Text(
+                        "Most Popular",
+                        style: FontStyles.for20(
+                          fontColor: ColorThemes.black0xff010101,
+                          fontWeight: BoldFont.bold,
+                        ),
                       ),
                     ),
+                    TextButton(
+                      onPressed: () {
+                        Get.to(ShopFromTopBrands());
+                      },
+                      child: Text(
+                        "See More...",
+                        style: FontStyles.for14(
+                          fontColor: ColorThemes.black0xff010101,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
                   ],
-                ),
-                SizedBox(
-                  height: 20,
                 ),
                 Column(
                   children: _shoppingPageController.customProductListTileList,

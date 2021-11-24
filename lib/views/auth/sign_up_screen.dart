@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fullcart/controllers/sign_up_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
-import 'package:fullcart/views/home_screen/shopping_page.dart';
+import 'package:fullcart/views/screens/bottom_navigation_bars.dart';
 import 'package:fullcart/views/widgets/custom_elevated_button.dart';
 import 'package:fullcart/views/widgets/custom_social_account_container.dart';
 import 'package:fullcart/views/widgets/custom_textField.dart';
@@ -203,7 +203,9 @@ class SignUpScreen extends StatelessWidget {
                             "" &&
                         _signUpController.emailTextController.text.toString() !=
                             "") {
-                      Get.to(ShoppingPage());
+                      Get.to(BottomNavigationBars(
+                        index: 0,
+                      ));
                     } else {
                       Get.snackbar("Error", "Enter Details");
                     }

@@ -44,6 +44,17 @@ class FontStyles {
     );
   }
 
+  static TextStyle for40({
+    @required Color? fontColor,
+    BoldFont fontWeight = BoldFont.regular,
+  }) {
+    return TextStyle(
+      color: fontColor ?? ColorThemes.white0xffffffff,
+      fontWeight: getFontWeight(fontWeight),
+      fontSize: 40,
+    );
+  }
+
   static TextStyle for20({
     @required Color? fontColor,
     BoldFont fontWeight = BoldFont.bold,

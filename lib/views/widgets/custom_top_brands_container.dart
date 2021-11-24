@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 class CustomTopBrandsContainer extends StatelessWidget {
   final String? url;
   final double? radius;
+  final double? radius1;
   final double? width;
-  const CustomTopBrandsContainer({Key? key, this.url, this.radius, this.width})
-      : super(key: key);
+  const CustomTopBrandsContainer({
+    Key? key,
+    this.url,
+    this.radius,
+    this.width,
+    this.radius1,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +24,8 @@ class CustomTopBrandsContainer extends StatelessWidget {
           image: NetworkImage(url!),
         ),
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(radius!),
+          bottomLeft: Radius.circular(radius ?? 0),
+          bottomRight: Radius.circular(radius1 ?? 0),
         ),
       ),
     );

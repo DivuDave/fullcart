@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/views/widgets/custom_category_container.dart';
 import 'package:fullcart/views/widgets/custom_product_container.dart';
@@ -5,8 +6,7 @@ import 'package:fullcart/views/widgets/custom_product_list_tile.dart';
 import 'package:get/get.dart';
 
 class ShoppingPageController extends GetxController {
-  List<CustomProductContainer> _customProductContainerList =
-      <CustomProductContainer>[
+  List<CustomProductContainer> _justArrivalsList = <CustomProductContainer>[
     CustomProductContainer(
       price1: "",
       itemName1: "",
@@ -88,14 +88,100 @@ class ShoppingPageController extends GetxController {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFqzv-t5SAAnzU09PLMxZwsY381o_KhMA73-EiVcaSH7kDTQ_p5RJxi6JxhNNjYm_o9HQ&usqp=CAU",
     ),
   ];
-  set customProductCantainerList(
-      List<CustomProductContainer> customProductContainerList) {
-    _customProductContainerList = customProductContainerList;
+  set justArrivalsList(List<CustomProductContainer> justArrivalsList) {
+    _justArrivalsList = justArrivalsList;
     update();
   }
 
-  List<CustomProductContainer> get customProductContainerList =>
-      _customProductContainerList;
+  List<CustomProductContainer> get justArrivalsList => _justArrivalsList;
+  List<CustomProductContainer> _topBrandsList = <CustomProductContainer>[
+    CustomProductContainer(
+      price1: "",
+      itemName1: "",
+      companyName: "Lenon",
+      itemName: "T-shirt",
+      price: "400/-",
+      isCalled: false,
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdw6tluiO7mF1GvGzAoB_lYEj_Ag6GIddmNw&usqp=CAU",
+    ),
+    CustomProductContainer(
+      price1: "",
+      itemName1: "",
+      companyName: "Mehra's",
+      itemName: "T-shirt",
+      price: "500/-",
+      isCalled: false,
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTWirJaUDW0s0FZx8zFkjgijv9UUIfmpt-fw&usqp=CAU",
+    ),
+    CustomProductContainer(
+      price1: "",
+      itemName1: "",
+      companyName: "Skies",
+      itemName: "Jeans",
+      price: "600/-",
+      isCalled: false,
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSotSk2abcTwoyPhnoz_LVsy0r_Rmcw49nplg&usqp=CAU",
+    ),
+    CustomProductContainer(
+      price1: "",
+      itemName1: "",
+      companyName: "Oxford's",
+      itemName: "Jeans",
+      price: "700/-",
+      isCalled: false,
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjlVf902j7CuxeuUasoL1gTJuakTO5LzAPAg&usqp=CAU",
+    ),
+    CustomProductContainer(
+      price1: "",
+      itemName1: "",
+      companyName: "Star's",
+      itemName: "Jeans",
+      price: "600/-",
+      isCalled: false,
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSelJ-XwiIFTZnnUXp3NF6Zbc6GE9PlSqJvHQ&usqp=CAU",
+    ),
+    CustomProductContainer(
+      price1: "",
+      itemName1: "",
+      companyName: "Expert's",
+      itemName: "Jeans",
+      price: "550/-",
+      isCalled: false,
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWzephfq4V_i8gl1g3wHUbZVcDUN6ckc8I_Q&usqp=CAU",
+    ),
+    CustomProductContainer(
+      price1: "",
+      itemName1: "",
+      companyName: "StyleGirl",
+      itemName: "T-shirt",
+      price: "450/-",
+      isCalled: false,
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw_O1H4CAS1HAEY_ihYsO0IKLHeE3n-zEXQg&usqp=CAU",
+    ),
+    CustomProductContainer(
+      price1: "",
+      itemName1: "",
+      companyName: "Werly",
+      itemName: "T-shirt",
+      price: "350/-",
+      isCalled: false,
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFqzv-t5SAAnzU09PLMxZwsY381o_KhMA73-EiVcaSH7kDTQ_p5RJxi6JxhNNjYm_o9HQ&usqp=CAU",
+    ),
+  ];
+  set topBrandsList(List<CustomProductContainer> topBrandsList) {
+    _topBrandsList = topBrandsList;
+    update();
+  }
+
+  List<CustomProductContainer> get topBrandsList => _topBrandsList;
 
   List<CustomCategoryContainer> _customCategoryContainerList =
       <CustomCategoryContainer>[
@@ -116,11 +202,11 @@ class ShoppingPageController extends GetxController {
       color: ColorThemes.lightBrown0xfff0cfcd,
     ),
     CustomCategoryContainer(
-      url: "https://cdn-icons.flaticon.com/png/128/5790/5790538.png",
+      url: "https://cdn-icons-png.flaticon.com/128/1198/1198409.png",
       color: ColorThemes.lightPeach0xffecbeae,
     ),
     CustomCategoryContainer(
-      url: "https://cdn-icons.flaticon.com/png/128/4041/4041120.png",
+      url: "https://cdn-icons-png.flaticon.com/128/94/94699.png",
       color: ColorThemes.lightPink0xfff7cdce,
     ),
   ];

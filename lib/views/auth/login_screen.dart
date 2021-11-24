@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fullcart/controllers/login_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
-import 'package:fullcart/views/home_screen/shopping_page.dart';
+import 'package:fullcart/views/screens/bottom_navigation_bars.dart';
 import 'package:fullcart/views/widgets/custom_elevated_button.dart';
 import 'package:fullcart/views/widgets/custom_social_account_container.dart';
 import 'package:fullcart/views/widgets/custom_textField.dart';
@@ -23,6 +23,7 @@ class LoginScreen extends StatelessWidget {
       body: Form(
         key: formkey1,
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               SizedBox(
@@ -160,7 +161,7 @@ class LoginScreen extends StatelessWidget {
                       _loginController.loginPasswordTextController.text
                               .toString() !=
                           "") {
-                    Get.to(ShoppingPage());
+                    Get.to(BottomNavigationBars());
                   } else {
                     Get.snackbar("Error", "Enter Details");
                   }
@@ -171,7 +172,7 @@ class LoginScreen extends StatelessWidget {
                     _loginController.password =
                         _loginController.loginPasswordTextController.text;
 
-                    Get.to(ShoppingPage());
+                    Get.to(BottomNavigationBars());
                   } else {
                     Get.snackbar("Error", "Enter Valid Details");
                   }
