@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fullcart/controllers/sign_up_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
-import 'package:get/get.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({Key? key}) : super(key: key);
-  final SignUpController _signUpController =
-      Get.put(SignUpController(), tag: SignUpController().toString());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +16,7 @@ class ProfilePage extends StatelessWidget {
         backgroundColor: ColorThemes.white0xffffffff,
         title: Text(
           "Profile",
-          style: FontStyles.for20(P
+          style: FontStyles.for20(
             fontColor: ColorThemes.grey0xFF7F8185,
           ),
         ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fullcart/controllers/focus_controller.dart';
 import 'package:fullcart/controllers/login_controller.dart';
+import 'package:fullcart/controllers/sign_up_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
 import 'package:fullcart/views/screens/bottom_navigation_bars.dart';
@@ -15,6 +17,8 @@ class LoginScreen extends StatelessWidget {
   final GlobalKey<FormState> formkey1 = GlobalKey<FormState>();
   final LoginController _loginController =
       Get.put(LoginController(), tag: LoginController().toString());
+  final SignUpController _signUpController =
+      Get.put(SignUpController(), tag: SignUpController().toString());
 
   @override
   Widget build(BuildContext context) {
@@ -56,35 +60,50 @@ class LoginScreen extends StatelessWidget {
               ),
               Column(
                 children: [
-                  CustomTextField(
-                    width: 350,
-                    controller: _loginController.loginEmailTextController,
-                    hintText: "Email",
-                    labelText: "Email",
-                    onChanged: (value) {
-                      _loginController.email = _loginController
-                          .loginEmailTextController.text
-                          .toString();
-                      _loginController.update();
-                    },
-                    validator: (value) {
-                      if (!GetUtils.isEmail(value!)) {
-                        return "Enter valid email";
-                      }
-                    },
+                  Focus(
+                    autofocus: true,
+                    child: CustomTextField(
+                      onEditingComplete: () {
+                        FocusScope.of(context).requestFocus(
+                            _signUpController.focusNodeForLoginPassword);
+                      },
+                      focusNode: _signUpController.focusNodeForLoginEmail,
+                      width: 350,
+                      controller: _loginController.loginEmailTextController,
+                      hintText: "Email",
+                      labelText: "Email",
+                      onChanged: (value) {
+                        _loginController.email = _loginController
+                            .loginEmailTextController.text
+                            .toString();
+                        _loginController.update();
+                      },
+                      validator: (value) {
+                        if (!GetUtils.isEmail(value!)) {
+                          return "Enter valid email";
+                        }
+                      },
+                    ),
                   ),
                   GetBuilder<LoginController>(
                     init: _loginController,
                     builder: (_) {
-                      return Text(
-                        _loginController.loginEmailTextController.text
-                                    .toString() ==
-                                ""
-                            ? "Enter email"
-                            : "",
-                        style: FontStyles.forError(
-                          fontColor: ColorThemes.red0xfff20812,
-                        ),
+                      return Row(
+                        children: [
+                          SizedBox(
+                            width: 30,
+                          ),
+                          Text(
+                            _loginController.loginEmailTextController.text
+                                        .toString() ==
+                                    ""
+                                ? "Enter email"
+                                : "",
+                            style: FontStyles.forError(
+                              fontColor: ColorThemes.red0xfff20812,
+                            ),
+                          ),
+                        ],
                       );
                     },
                   ),
@@ -96,57 +115,73 @@ class LoginScreen extends StatelessWidget {
               Row(
                 children: [
                   SizedBox(
-                    width: 35,
+                    width: 30,
                   ),
-                  Column(
-                    children: [
-                      CustomTextField(
-                        suffixIcon: TextButton(
-                          onPressed: () {
-                            Get.to(ForgotPasswordScreen());
+                  Focus(
+                    autofocus: true,
+                    child: Column(
+                      children: [
+                        CustomTextField(
+                          focusNode:
+                              _signUpController.focusNodeForLoginPassword,
+                          onFieldSubmitted: (_) {
+                            FocusScope.of(context).unfocus();
                           },
-                          child: Text(
-                            "Forgot?",
-                            style: FontStyles.for16(
-                              fontColor: ColorThemes.grey0xFF7F8185,
+                          suffixIcon: TextButton(
+                            onPressed: () {
+                              Get.to(ForgotPasswordScreen());
+                            },
+                            child: Text(
+                              "Forgot?",
+                              style: FontStyles.for16(
+                                fontColor: ColorThemes.grey0xFF7F8185,
+                              ),
                             ),
                           ),
+                          width: 350,
+                          controller:
+                              _loginController.loginPasswordTextController,
+                          hintText: "Password",
+                          labelText: "Password",
+                          onChanged: (value) {
+                            _loginController.password = _loginController
+                                .loginPasswordTextController.text
+                                .toString();
+                            _loginController.update();
+                          },
+                          validator: (value) {
+                            RegExp regex = RegExp(
+                                r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+                            if (!regex.hasMatch(value!)) {
+                              return "Enter valid password";
+                            }
+                          },
                         ),
-                        width: 350,
-                        controller:
-                            _loginController.loginPasswordTextController,
-                        hintText: "Password",
-                        labelText: "Password",
-                        onChanged: (value) {
-                          _loginController.password = _loginController
-                              .loginPasswordTextController.text
-                              .toString();
-                          _loginController.update();
-                        },
-                        validator: (value) {
-                          RegExp regex = RegExp(
-                              r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-                          if (!regex.hasMatch(value!)) {
-                            return "Enter valid password";
-                          }
-                        },
-                      ),
-                      GetBuilder(
-                        init: _loginController,
-                        builder: (_) {
-                          return Text(
-                            _loginController.loginPasswordTextController.text
-                                        .toString() ==
-                                    ""
-                                ? "Enter password"
-                                : "",
-                            style: FontStyles.forError(
-                              fontColor: ColorThemes.red0xfff20812,
-                            ),
-                          );
-                        },
-                      ),
-                    ],
+                        GetBuilder(
+                          init: _loginController,
+                          builder: (_) {
+                            return Row(
+                              children: [
+                                Text(
+                                  _loginController
+                                              .loginPasswordTextController.text
+                                              .toString() ==
+                                          ""
+                                      ? "Enter password"
+                                      : "",
+                                  style: FontStyles.forError(
+                                    fontColor: ColorThemes.red0xfff20812,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 260,
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

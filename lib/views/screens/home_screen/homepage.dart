@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: 40,
+                  height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -35,22 +35,32 @@ class HomePage extends StatelessWidget {
                         "Fullcart",
                         style: FontStyles.for25(
                           fontColor: ColorThemes.purple0xff532c46,
+                          fontWeight: BoldFont.bold,
                         ),
                       ),
                     ],
                   ),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
                     left: 30.0,
                     right: 10,
                   ),
-                  child: Text(
-                    "Love Yourself Better",
-                    style: FontStyles.for62(
-                      fontColor: ColorThemes.white0xffffffff,
-                    ),
+                  child: ClipRRect(
+                    child: Text(
+                      "Love Yourself Better",
+                      style: FontStyles.for62(
+                        fontColor: ColorThemes.white0xffffffff,
+                        fontWeight: BoldFont.bold,
+                      ),
+                    ).paddingZero,
                   ),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 Row(
                   children: [
@@ -63,18 +73,11 @@ class HomePage extends StatelessWidget {
                         children: [
                           Text(
                             "Shop Now",
-                            style: FontStyles.for20(
+                            style: FontStyles.for25(
                               fontColor: ColorThemes.purple0xff532c46,
+                              fontWeight: BoldFont.bold,
                             ),
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            width: 90,
-                            height: 3,
-                            color: ColorThemes.white0xffffffff,
-                          )
                         ],
                       ),
                       onTap: () {
@@ -88,18 +91,21 @@ class HomePage extends StatelessWidget {
           ),
           Positioned(
             top: 350,
-            child: Container(
-              height: 500,
-              width: 415,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(50),
-                  topRight: Radius.circular(50),
-                ),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8OsmD5bL128YE99_R2LJdGUjFfK8_oyxopw&usqp=CAU",
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                height: MediaQuery.of(context).size.height / 2,
+                width: MediaQuery.of(context).size.width - 30,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(50),
+                    topRight: Radius.circular(50),
+                  ),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                      "https://www.pngarts.com/files/3/Clothing-PNG-Photo.png",
+                    ),
                   ),
                 ),
               ),

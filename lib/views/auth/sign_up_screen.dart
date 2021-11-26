@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fullcart/controllers/focus_controller.dart';
 import 'package:fullcart/controllers/sign_up_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
@@ -10,9 +11,11 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class SignUpScreen extends StatelessWidget {
-  SignUpScreen({Key? key}) : super(key: key);
+  SignUpScreen({
+    Key? key,
+  }) : super(key: key);
   final SignUpController _signUpController =
-      Get.put(SignUpController(), tag: SignUpController().toString());
+      Get.find(tag: SignUpController().toString());
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
@@ -52,117 +55,167 @@ class SignUpScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Column(
-                children: [
-                  CustomTextField(
-                    width: 350,
-                    controller: _signUpController.nameTextController,
-                    onChanged: (value) {
-                      _signUpController.name =
-                          _signUpController.nameTextController.text.toString();
-                      _signUpController.update();
-                    },
-                    hintText: "Your Name",
-                    labelText: "Your Name",
-                    validator: (value) {
-                      if (!GetUtils.isAlphabetOnly(value!)) {
-                        return "Enter valid name";
-                      }
-                    },
-                  ),
-                  GetBuilder<SignUpController>(
-                    init: _signUpController,
-                    builder: (_) {
-                      return Text(
-                        _signUpController.nameTextController.text.toString() ==
-                                ""
-                            ? "Enter name"
-                            : "",
-                        style: FontStyles.forError(
-                          fontColor: ColorThemes.red0xfff20812,
+              GetBuilder<SignUpController>(
+                init: _signUpController,
+                builder: (_) {
+                  return Focus(
+                    autofocus: true,
+                    child: Column(
+                      children: [
+                        CustomTextField(
+                          onEditingComplete: () {
+                            _signUpController.isFocusedName = false;
+                            return FocusScope.of(context).requestFocus(
+                              _signUpController.focusNodeForEmail,
+                            );
+                          },
+                          focusNode: _signUpController.focusNodeForName,
+                          width: 350,
+                          controller: _signUpController.nameTextController,
+                          onChanged: (value) {
+                            _signUpController.name = _signUpController
+                                .nameTextController.text
+                                .toString();
+                            _signUpController.update();
+                          },
+                          hintText: "Your Name",
+                          labelText: "Your Name",
+                          validator: (value) {
+                            if (!GetUtils.isAlphabetOnly(value!)) {
+                              return "Enter valid name";
+                            }
+                          },
                         ),
-                      );
-                    },
-                  ),
-                ],
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Text(
+                              _signUpController.nameTextController.text
+                                          .toString() ==
+                                      ""
+                                  ? "Enter name"
+                                  : "",
+                              style: FontStyles.forError(
+                                fontColor: ColorThemes.red0xfff20812,
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  );
+                },
               ),
               SizedBox(
                 height: 10,
               ),
-              Column(
-                children: [
-                  CustomTextField(
-                    width: 350,
-                    controller: _signUpController.emailTextController,
-                    hintText: "Email",
-                    labelText: "Email",
-                    onChanged: (value) {
-                      _signUpController.email =
-                          _signUpController.emailTextController.text.toString();
-                      _signUpController.update();
-                    },
-                    validator: (value) {
-                      if (!GetUtils.isEmail(value!)) {
-                        return "Enter valid email";
-                      }
-                    },
-                  ),
-                  GetBuilder<SignUpController>(
-                    init: _signUpController,
-                    builder: (_) {
-                      return Text(
-                        _signUpController.emailTextController.text.toString() ==
-                                ""
-                            ? "Enter email"
-                            : "",
-                        style: FontStyles.forError(
-                          fontColor: ColorThemes.red0xfff20812,
-                        ),
-                      );
-                    },
-                  ),
-                ],
+              Focus(
+                autofocus: true,
+                child: Column(
+                  children: [
+                    CustomTextField(
+                      onEditingComplete: () {
+                        return FocusScope.of(context).requestFocus(
+                            _signUpController.focusNodeForPassword);
+                      },
+                      focusNode: _signUpController.focusNodeForEmail,
+                      width: 350,
+                      controller: _signUpController.emailTextController,
+                      hintText: "Email",
+                      labelText: "Email",
+                      onChanged: (value) {
+                        _signUpController.email = _signUpController
+                            .emailTextController.text
+                            .toString();
+                        _signUpController.update();
+                      },
+                      validator: (value) {
+                        if (!GetUtils.isEmail(value!)) {
+                          return "Enter valid email";
+                        }
+                      },
+                    ),
+                    GetBuilder<SignUpController>(
+                      init: _signUpController,
+                      builder: (_) {
+                        return Row(
+                          children: [
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Text(
+                              _signUpController.emailTextController.text
+                                          .toString() ==
+                                      ""
+                                  ? "Enter email"
+                                  : "",
+                              style: FontStyles.forError(
+                                fontColor: ColorThemes.red0xfff20812,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 10,
               ),
-              Column(
-                children: [
-                  CustomTextField(
-                    width: 350,
-                    controller: _signUpController.passwordTextController,
-                    hintText: "Password",
-                    labelText: "Password",
-                    onChanged: (value) {
-                      _signUpController.password = _signUpController
-                          .passwordTextController.text
-                          .toString();
-                      _signUpController.update();
-                    },
-                    validator: (value) {
-                      RegExp regex = RegExp(
-                          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-                      if (!regex.hasMatch(value!)) {
-                        return "Enter valid password";
-                      }
-                    },
-                  ),
-                  GetBuilder(
-                    init: _signUpController,
-                    builder: (_) {
-                      return Text(
-                        _signUpController.passwordTextController.text
-                                    .toString() ==
-                                ""
-                            ? "Enter password"
-                            : "",
-                        style: FontStyles.forError(
-                          fontColor: ColorThemes.red0xfff20812,
-                        ),
-                      );
-                    },
-                  ),
-                ],
+              Focus(
+                autofocus: true,
+                child: Column(
+                  children: [
+                    CustomTextField(
+                      onFieldSubmitted: (_) {
+                        return FocusScope.of(context).unfocus();
+                      },
+                      focusNode: _signUpController.focusNodeForPassword,
+                      width: 350,
+                      controller: _signUpController.passwordTextController,
+                      hintText: "Password",
+                      labelText: "Password",
+                      onChanged: (value) {
+                        _signUpController.password = _signUpController
+                            .passwordTextController.text
+                            .toString();
+                        _signUpController.update();
+                      },
+                      validator: (value) {
+                        RegExp regex = RegExp(
+                            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+                        if (!regex.hasMatch(value!)) {
+                          return "Enter valid password";
+                        }
+                      },
+                    ),
+                    GetBuilder(
+                      init: _signUpController,
+                      builder: (_) {
+                        return Row(
+                          children: [
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Text(
+                              _signUpController.passwordTextController.text
+                                          .toString() ==
+                                      ""
+                                  ? "Enter password"
+                                  : "",
+                              style: FontStyles.forError(
+                                fontColor: ColorThemes.red0xfff20812,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 30,

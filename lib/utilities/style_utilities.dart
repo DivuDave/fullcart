@@ -38,6 +38,7 @@ class FontStyles {
     BoldFont fontWeight = BoldFont.regular,
   }) {
     return TextStyle(
+      height: 0.90,
       color: fontColor ?? ColorThemes.white0xffffffff,
       fontWeight: getFontWeight(fontWeight),
       fontSize: 62,

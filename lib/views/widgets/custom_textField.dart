@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fullcart/controllers/focus_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
+import 'package:get/get.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
@@ -11,6 +13,11 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
+  final void Function()? onTap;
+  final FocusNode? focusNode;
+  final void Function()? onEditingComplete;
+  final void Function(String)? onFieldSubmitted;
+
   CustomTextField({
     Key? key,
     this.controller,
@@ -21,6 +28,10 @@ class CustomTextField extends StatelessWidget {
     this.suffixIcon,
     this.validator,
     this.prefixIcon,
+    this.onTap,
+    this.focusNode,
+    this.onEditingComplete,
+    this.onFieldSubmitted,
   }) : super(key: key);
 
   @override
@@ -28,6 +39,11 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       width: width,
       child: TextFormField(
+        onFieldSubmitted: onFieldSubmitted,
+        onEditingComplete: onEditingComplete,
+        focusNode: focusNode,
+        onTap: onTap,
+        autofocus: true,
         validator: validator,
         onChanged: onChanged,
         controller: controller,

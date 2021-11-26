@@ -16,63 +16,68 @@ class TutorialForTopBrands extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                CustomTopBrandsContainer(
-                  width: 340,
-                  radius: 100,
-                  url:
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy5DBuGBw-uFICPdUQyumA-9Q6lgri3KAEsw&usqp=CAU",
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                CustomTopBrandsContainer(
-                  width: 340,
-                  radius: 0,
-                  url:
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN2t2_9kNdHh5ru7YdrUYPOrXu-vKY-09BkQ&usqp=CAU",
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                CustomTopBrandsContainer(
-                  width: 340,
-                  radius: 0,
-                  url:
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBWznDmsN_09mKPDASJM_FlQKoCeSouh6L1Q&usqp=CAU",
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                CustomTopBrandsContainer(
-                  width: 340,
-                  radius: 0,
-                  url:
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW5oFFXDEW-TS_LjptdOn02U3ByC-kT_HYsH9OSNPDDf33g5VpUFYBA0DfMrL-2pblruo&usqp=CAU",
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                CustomTopBrandsContainer(
-                  width: 340,
-                  radius: 0,
-                  url:
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT27QBhJ6ZaodleZboVFoFATalwi-dzQ1fUAg&usqp=CAU",
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                CustomTopBrandsContainer(
-                  width: 340,
-                  radius: 0,
-                  url:
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrpvxAFHCniDOWY3aUxuewjqo98QFvtg1I9A&usqp=CAU",
-                ),
-              ],
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(
+                100,
+              ),
+            ),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  CustomTopBrandsContainer(
+                    width: 340,
+                    url:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy5DBuGBw-uFICPdUQyumA-9Q6lgri3KAEsw&usqp=CAU",
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  CustomTopBrandsContainer(
+                    width: 340,
+                    radius: 0,
+                    url:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN2t2_9kNdHh5ru7YdrUYPOrXu-vKY-09BkQ&usqp=CAU",
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  CustomTopBrandsContainer(
+                    width: 340,
+                    radius: 0,
+                    url:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBWznDmsN_09mKPDASJM_FlQKoCeSouh6L1Q&usqp=CAU",
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  CustomTopBrandsContainer(
+                    width: 340,
+                    radius: 0,
+                    url:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW5oFFXDEW-TS_LjptdOn02U3ByC-kT_HYsH9OSNPDDf33g5VpUFYBA0DfMrL-2pblruo&usqp=CAU",
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  CustomTopBrandsContainer(
+                    width: 340,
+                    radius: 0,
+                    url:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT27QBhJ6ZaodleZboVFoFATalwi-dzQ1fUAg&usqp=CAU",
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  CustomTopBrandsContainer(
+                    width: 340,
+                    radius: 0,
+                    url:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrpvxAFHCniDOWY3aUxuewjqo98QFvtg1I9A&usqp=CAU",
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(
@@ -154,6 +159,9 @@ class TutorialForTopBrands extends StatelessWidget {
                         fontColor: ColorThemes.white0xffffffff,
                       ),
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       color: ColorThemes.white0xffffffff,
                       height: 3,
@@ -168,7 +176,7 @@ class TutorialForTopBrands extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 70,
+            height: 60,
           ),
           Row(
             children: [
