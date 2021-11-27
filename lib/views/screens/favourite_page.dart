@@ -7,9 +7,8 @@ import 'package:get/get.dart';
 
 class FavouritePage extends StatelessWidget {
   FavouritePage({Key? key}) : super(key: key);
-  final ShoppingPageController _shoppingPageController = Get.put(
-      ShoppingPageController(),
-      tag: ShoppingPageController().toString());
+  final ShoppingPageController _shoppingPageController =
+      Get.find(tag: ShoppingPageController().toString());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,9 +33,6 @@ class FavouritePage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
-              height: 10,
-            ),
             Row(
               children: [
                 SizedBox(
@@ -50,6 +46,12 @@ class FavouritePage extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(
+              height: 10,
+            ),
+            Column(
+              children: _shoppingPageController.wishList,
+            )
           ],
         ),
       ),

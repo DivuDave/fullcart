@@ -26,86 +26,97 @@ class _CustomBarState extends State<CustomBar> {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      showSelectedLabels: true,
-      showUnselectedLabels: true,
-      unselectedLabelStyle: FontStyles.for14(
-        fontColor: ColorThemes.lightGrey0xFFcfcfcf,
+    return Container(
+      height: 80,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        color: ColorThemes.pink0xffed3454,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
+        ),
       ),
-      selectedLabelStyle: FontStyles.for14(
-        fontColor: ColorThemes.black0xff010101,
+      child: BottomNavigationBar(
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        unselectedLabelStyle: FontStyles.for14(
+          fontColor: ColorThemes.lightGrey0xFFcfcfcf,
+        ),
+        selectedLabelStyle: FontStyles.for14(
+          fontColor: ColorThemes.black0xff010101,
+        ),
+        onTap: onItemTapped,
+        selectedItemColor: ColorThemes.white0xffffffff,
+        currentIndex: selectedIndex!,
+        items: [
+          BottomNavigationBarItem(
+            backgroundColor: ColorThemes.white0xffffffff,
+            activeIcon: Icon(
+              Icons.shopping_bag,
+              color: ColorThemes.black0xff010101,
+              size: 33,
+            ),
+            label: "Shop",
+            icon: Icon(
+              Icons.shopping_bag,
+              color: ColorThemes.lightGrey0xFFcfcfcf,
+              size: 33,
+            ),
+          ),
+          BottomNavigationBarItem(
+            activeIcon: Icon(
+              Icons.favorite,
+              color: ColorThemes.black0xff010101,
+              size: 33,
+            ),
+            label: "Favourite",
+            icon: Icon(
+              Icons.favorite,
+              color: ColorThemes.lightGrey0xFFcfcfcf,
+              size: 33,
+            ),
+          ),
+          BottomNavigationBarItem(
+            activeIcon: Icon(
+              Icons.local_shipping,
+              color: ColorThemes.black0xff010101,
+              size: 33,
+            ),
+            label: "Shipping",
+            icon: Icon(
+              Icons.local_shipping,
+              color: ColorThemes.lightGrey0xFFcfcfcf,
+              size: 33,
+            ),
+          ),
+          BottomNavigationBarItem(
+            activeIcon: Icon(
+              Icons.shopping_cart,
+              color: ColorThemes.black0xff010101,
+              size: 33,
+            ),
+            label: "Cart",
+            icon: Icon(
+              Icons.shopping_cart,
+              color: ColorThemes.lightGrey0xFFcfcfcf,
+              size: 33,
+            ),
+          ),
+          BottomNavigationBarItem(
+            activeIcon: Icon(
+              Icons.account_box,
+              color: ColorThemes.black0xff010101,
+              size: 33,
+            ),
+            label: "Profile",
+            icon: Icon(
+              Icons.account_box_outlined,
+              color: ColorThemes.lightGrey0xFFcfcfcf,
+              size: 33,
+            ),
+          ),
+        ],
       ),
-      onTap: onItemTapped,
-      selectedItemColor: ColorThemes.white0xffffffff,
-      currentIndex: selectedIndex!,
-      items: [
-        BottomNavigationBarItem(
-          backgroundColor: ColorThemes.white0xffffffff,
-          activeIcon: Icon(
-            Icons.shopping_bag,
-            color: ColorThemes.black0xff010101,
-            size: 33,
-          ),
-          label: "Shop",
-          icon: Icon(
-            Icons.shopping_bag,
-            color: ColorThemes.lightGrey0xFFcfcfcf,
-            size: 33,
-          ),
-        ),
-        BottomNavigationBarItem(
-          activeIcon: Icon(
-            Icons.favorite,
-            color: ColorThemes.black0xff010101,
-            size: 33,
-          ),
-          label: "Favourite",
-          icon: Icon(
-            Icons.favorite,
-            color: ColorThemes.lightGrey0xFFcfcfcf,
-            size: 33,
-          ),
-        ),
-        BottomNavigationBarItem(
-          activeIcon: Icon(
-            Icons.local_shipping,
-            color: ColorThemes.black0xff010101,
-            size: 33,
-          ),
-          label: "Shipping",
-          icon: Icon(
-            Icons.local_shipping,
-            color: ColorThemes.lightGrey0xFFcfcfcf,
-            size: 33,
-          ),
-        ),
-        BottomNavigationBarItem(
-          activeIcon: Icon(
-            Icons.shopping_cart,
-            color: ColorThemes.black0xff010101,
-            size: 33,
-          ),
-          label: "Cart",
-          icon: Icon(
-            Icons.shopping_cart,
-            color: ColorThemes.lightGrey0xFFcfcfcf,
-            size: 33,
-          ),
-        ),
-        BottomNavigationBarItem(
-          activeIcon: Icon(
-            Icons.account_box,
-            color: ColorThemes.black0xff010101,
-            size: 33,
-          ),
-          label: "Profile",
-          icon: Icon(
-            Icons.account_box_outlined,
-            color: ColorThemes.lightGrey0xFFcfcfcf,
-            size: 33,
-          ),
-        ),
-      ],
     );
   }
 }

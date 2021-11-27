@@ -220,6 +220,7 @@ class ShoppingPageController extends GetxController {
       _customCategoryContainerList;
   List<CustomProductListTile> _customProductListTileList = [
     CustomProductListTile(
+      isInWishList: false,
       price: "400/-",
       itemname: "Tshirt",
       color: "Color:Blue",
@@ -228,6 +229,7 @@ class ShoppingPageController extends GetxController {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvQh_D1uiPxFOrTFwyHkqTOI5psBJ9k3LNOQ&usqp=CAU",
     ),
     CustomProductListTile(
+      isInWishList: false,
       itemname: "T-shirt",
       price: "350/-",
       age: "Age:15",
@@ -236,6 +238,7 @@ class ShoppingPageController extends GetxController {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgkPyawKRX3-9aoRICdB45fMjZEd69Dv3IzA&usqp=CAU",
     ),
     CustomProductListTile(
+      isInWishList: false,
       itemname: "T-shirt",
       price: "400/-",
       age: "Age:22",
@@ -244,6 +247,7 @@ class ShoppingPageController extends GetxController {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2K8R0CbMCuqFYVHnRF6RpNZjEa68ela5_ew&usqp=CAU",
     ),
     CustomProductListTile(
+      isInWishList: false,
       age: "Age:25",
       itemname: "jeans",
       price: "500",
@@ -260,4 +264,49 @@ class ShoppingPageController extends GetxController {
 
   List<CustomProductListTile> get customProductListTileList =>
       _customProductListTileList;
+
+  List<CustomProductListTile> _wishList = [
+    CustomProductListTile(
+      isInWishList: true,
+      price: "400/-",
+      itemname: "Tshirt",
+      color: "Color:Blue",
+      age: "Age:20",
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvQh_D1uiPxFOrTFwyHkqTOI5psBJ9k3LNOQ&usqp=CAU",
+    ),
+    CustomProductListTile(
+      isInWishList: true,
+      itemname: "T-shirt",
+      price: "350/-",
+      age: "Age:15",
+      color: "Color:Blue",
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgkPyawKRX3-9aoRICdB45fMjZEd69Dv3IzA&usqp=CAU",
+    ),
+    CustomProductListTile(
+      isInWishList: true,
+      itemname: "T-shirt",
+      price: "400/-",
+      age: "Age:22",
+      color: "Color:Peach",
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2K8R0CbMCuqFYVHnRF6RpNZjEa68ela5_ew&usqp=CAU",
+    ),
+    CustomProductListTile(
+      isInWishList: true,
+      age: "Age:25",
+      itemname: "jeans",
+      price: "500",
+      color: "Color:Blue",
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvne37gWiuwDFbnUtRzPAzrLc96BJrIJd8Ww&usqp=CAU",
+    ),
+  ];
+  set wishList(List<CustomProductListTile> wishList) {
+    _wishList = wishList;
+    update();
+  }
+
+  List<CustomProductListTile> get wishList => _wishList;
 }
