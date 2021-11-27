@@ -16,9 +16,7 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
   final GlobalKey<FormState> formkey1 = GlobalKey<FormState>();
   final LoginController _loginController =
-      Get.put(LoginController(), tag: LoginController().toString());
-  final SignUpController _signUpController =
-      Get.put(SignUpController(), tag: SignUpController().toString());
+      Get.find(tag: LoginController().toString());
 
   @override
   Widget build(BuildContext context) {
@@ -58,56 +56,67 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Column(
-                children: [
-                  Focus(
+              GetBuilder<LoginController>(
+                init: _loginController,
+                builder: (_) {
+                  return Focus(
                     autofocus: true,
-                    child: CustomTextField(
-                      onEditingComplete: () {
-                        FocusScope.of(context).requestFocus(
-                            _signUpController.focusNodeForLoginPassword);
-                      },
-                      focusNode: _signUpController.focusNodeForLoginEmail,
-                      width: 350,
-                      controller: _loginController.loginEmailTextController,
-                      hintText: "Email",
-                      labelText: "Email",
-                      onChanged: (value) {
-                        _loginController.email = _loginController
-                            .loginEmailTextController.text
-                            .toString();
-                        _loginController.update();
-                      },
-                      validator: (value) {
-                        if (!GetUtils.isEmail(value!)) {
-                          return "Enter valid email";
-                        }
-                      },
+                    child: Column(
+                      children: [
+                        CustomTextField(
+                          onTap: () {
+                            _loginController.toggle(
+                              type: LoginControllerType.userLoginEmail,
+                            );
+                          },
+                          onEditingComplete: () {
+                            _loginController.toggle(
+                              type: LoginControllerType.userLoginPassword,
+                            );
+                            FocusScope.of(context).requestFocus(
+                                _loginController.focusNodeForLoginPassword);
+                          },
+                          focusNode: _loginController.focusNodeForLoginEmail,
+                          width: 350,
+                          controller: _loginController.loginEmailTextController,
+                          hintText: "Email",
+                          labelText: "Email",
+                          onChanged: (value) {
+                            _loginController.email = _loginController
+                                .loginEmailTextController.text
+                                .toString();
+                            _loginController.update();
+                          },
+                          validator: (value) {
+                            if (!GetUtils.isEmail(value!)) {
+                              return "Enter valid email";
+                            }
+                          },
+                        ),
+                        _loginController.isFocusedLoginEmail == true
+                            ? Row(
+                                children: [
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  Text(
+                                    _loginController
+                                                .loginEmailTextController.text
+                                                .toString() ==
+                                            ""
+                                        ? "Enter email"
+                                        : "",
+                                    style: FontStyles.forError(
+                                      fontColor: ColorThemes.red0xfff20812,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : SizedBox(),
+                      ],
                     ),
-                  ),
-                  GetBuilder<LoginController>(
-                    init: _loginController,
-                    builder: (_) {
-                      return Row(
-                        children: [
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Text(
-                            _loginController.loginEmailTextController.text
-                                        .toString() ==
-                                    ""
-                                ? "Enter email"
-                                : "",
-                            style: FontStyles.forError(
-                              fontColor: ColorThemes.red0xfff20812,
-                            ),
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                ],
+                  );
+                },
               ),
               SizedBox(
                 height: 10,
@@ -117,71 +126,82 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(
                     width: 30,
                   ),
-                  Focus(
-                    autofocus: true,
-                    child: Column(
-                      children: [
-                        CustomTextField(
-                          focusNode:
-                              _signUpController.focusNodeForLoginPassword,
-                          onFieldSubmitted: (_) {
-                            FocusScope.of(context).unfocus();
-                          },
-                          suffixIcon: TextButton(
-                            onPressed: () {
-                              Get.to(ForgotPasswordScreen());
-                            },
-                            child: Text(
-                              "Forgot?",
-                              style: FontStyles.for16(
-                                fontColor: ColorThemes.grey0xFF7F8185,
-                              ),
-                            ),
-                          ),
-                          width: 350,
-                          controller:
-                              _loginController.loginPasswordTextController,
-                          hintText: "Password",
-                          labelText: "Password",
-                          onChanged: (value) {
-                            _loginController.password = _loginController
-                                .loginPasswordTextController.text
-                                .toString();
-                            _loginController.update();
-                          },
-                          validator: (value) {
-                            RegExp regex = RegExp(
-                                r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-                            if (!regex.hasMatch(value!)) {
-                              return "Enter valid password";
-                            }
-                          },
-                        ),
-                        GetBuilder(
-                          init: _loginController,
-                          builder: (_) {
-                            return Row(
-                              children: [
-                                Text(
-                                  _loginController
-                                              .loginPasswordTextController.text
-                                              .toString() ==
-                                          ""
-                                      ? "Enter password"
-                                      : "",
-                                  style: FontStyles.forError(
-                                    fontColor: ColorThemes.red0xfff20812,
+                  GetBuilder(
+                    init: _loginController,
+                    builder: (_) {
+                      return Focus(
+                        autofocus: true,
+                        child: Column(
+                          children: [
+                            CustomTextField(
+                              onTap: () {
+                                _loginController.toggle(
+                                  type: LoginControllerType.userLoginPassword,
+                                );
+                              },
+                              focusNode:
+                                  _loginController.focusNodeForLoginPassword,
+                              onFieldSubmitted: (_) {
+                                _loginController.toggle(
+                                  type: null,
+                                );
+                                FocusScope.of(context).unfocus();
+                              },
+                              suffixIcon: TextButton(
+                                onPressed: () {
+                                  Get.to(ForgotPasswordScreen());
+                                },
+                                child: Text(
+                                  "Forgot?",
+                                  style: FontStyles.for16(
+                                    fontColor: ColorThemes.grey0xFF7F8185,
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 260,
-                                ),
-                              ],
-                            );
-                          },
+                              ),
+                              width: 350,
+                              controller:
+                                  _loginController.loginPasswordTextController,
+                              hintText: "Password",
+                              labelText: "Password",
+                              onChanged: (value) {
+                                _loginController.password = _loginController
+                                    .loginPasswordTextController.text
+                                    .toString();
+                                _loginController.update();
+                              },
+                              validator: (value) {
+                                RegExp regex = RegExp(
+                                    r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+                                if (!regex.hasMatch(value!)) {
+                                  return "Enter valid password";
+                                }
+                              },
+                            ),
+                            _loginController.isFocusedLoginPassword == true
+                                ? Row(
+                                    children: [
+                                      Text(
+                                        _loginController
+                                                    .loginPasswordTextController
+                                                    .text
+                                                    .toString() ==
+                                                ""
+                                            ? "Enter password"
+                                            : "",
+                                        style: FontStyles.forError(
+                                          fontColor: ColorThemes.red0xfff20812,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 260,
+                                      ),
+                                    ],
+                                  )
+                                : SizedBox(),
+                          ],
                         ),
-                      ],
-                    ),
+                      );
+                    },
                   ),
                 ],
               ),

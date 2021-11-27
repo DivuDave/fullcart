@@ -1,3 +1,5 @@
+import 'package:fullcart/utilities/color_utilities.dart';
+import 'package:fullcart/utilities/style_utilities.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
@@ -34,4 +36,6 @@ class OtpController extends GetxController {
   }
 
   String get fourth => _fourth!;
+  
+ 
 }

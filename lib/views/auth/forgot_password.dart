@@ -98,17 +98,24 @@ we can help by sending a link to reset it.""",
                         GetBuilder(
                           init: _forgotPasswordController,
                           builder: (_) {
-                            return Text(
-                              _forgotPasswordController
-                                          .forgotPasswordPhoneNumberController
-                                          .text
-                                          .toString() ==
-                                      ""
-                                  ? "Enter Phone Number"
-                                  : "",
-                              style: FontStyles.forError(
-                                fontColor: ColorThemes.red0xfff20812,
-                              ),
+                            return Row(
+                              children: [
+                                Text(
+                                  _forgotPasswordController
+                                              .forgotPasswordPhoneNumberController
+                                              .text
+                                              .toString() ==
+                                          ""
+                                      ? "Enter Phone Number"
+                                      : "",
+                                  style: FontStyles.forError(
+                                    fontColor: ColorThemes.red0xfff20812,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 220,
+                                ),
+                              ],
                             );
                           },
                         ),

@@ -39,6 +39,7 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       width: width,
       child: TextFormField(
+        obscureText: false,
         onFieldSubmitted: onFieldSubmitted,
         onEditingComplete: onEditingComplete,
         focusNode: focusNode,

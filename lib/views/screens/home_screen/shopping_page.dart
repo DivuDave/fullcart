@@ -96,6 +96,7 @@ class ShoppingPage extends StatelessWidget {
                   height: 20,
                 ),
                 SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [

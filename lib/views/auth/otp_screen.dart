@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fullcart/controllers/forgot_password_controller.dart';
 import 'package:fullcart/controllers/login_controller.dart';
 import 'package:fullcart/controllers/otp_controller.dart';
@@ -6,7 +7,7 @@ import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
 import 'package:fullcart/views/screens/home_screen/shopping_page.dart';
 import 'package:fullcart/views/widgets/custom_elevated_button.dart';
-import 'package:fullcart/views/widgets/custom_textField.dart';
+import 'package:fullcart/views/widgets/custom_otp_field.dart';
 import 'package:get/get.dart';
 
 import 'forgot_password.dart';
@@ -83,120 +84,70 @@ class OtpScreen extends StatelessWidget {
                     height: 30,
                   ),
                   Center(
-                    child: Row(
+                    child: Column(
                       children: [
                         SizedBox(
-                          width: 60,
+                          height: 30,
                         ),
-                        Container(
-                          width: 60,
-                          height: 60,
-                          color: ColorThemes.grey0xFF7F8185,
-                          child: CustomTextField(
-                            width: 50,
-                            controller: _otpController.firstCharacterController,
-                            hintText: "",
-                            labelText: "",
+                        CustomOtpField(),
+                        SizedBox(
+                          height: 130,
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Get.to(ForgotPasswordScreen());
+                          },
+                          child: Text(
+                            "send a new code",
+                            style: FontStyles.for16(
+                              fontColor: ColorThemes.black0xff010101,
+                              decoration: TextDecoration.underline,
+                              fontWeight: BoldFont.bold,
+                            ),
                           ),
                         ),
                         SizedBox(
-                          width: 20,
+                          height: 30,
                         ),
-                        Container(
-                          width: 60,
-                          height: 60,
-                          color: ColorThemes.grey0xFF7F8185,
-                          child: CustomTextField(
-                            width: 50,
-                            controller:
-                                _otpController.secondCharacterController,
-                            hintText: "",
-                            labelText: "",
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Container(
-                          width: 60,
-                          height: 60,
-                          color: ColorThemes.grey0xFF7F8185,
-                          child: CustomTextField(
-                            width: 50,
-                            controller: _otpController.thirdCharacterController,
-                            hintText: "",
-                            labelText: "",
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Container(
-                          width: 60,
-                          height: 60,
-                          color: ColorThemes.grey0xFF7F8185,
-                          child: CustomTextField(
-                            width: 50,
-                            controller:
-                                _otpController.fourthCharacterController,
-                            hintText: "",
-                            labelText: "",
-                          ),
+                        CustomElevatedButton(
+                          onPressed: () {
+                            _otpController.first = _otpController
+                                .firstCharacterController.text
+                                .toString();
+                            _otpController.second = _otpController
+                                .secondCharacterController.text
+                                .toString();
+                            _otpController.third = _otpController
+                                .thirdCharacterController.text
+                                .toString();
+                            _otpController.fourth = _otpController
+                                .fourthCharacterController.text
+                                .toString();
+                            if (_otpController.first != "" &&
+                                _otpController.second != "" &&
+                                _otpController.third != "" &&
+                                _otpController.fourth != "") {
+                              Get.to(ShoppingPage());
+                              Get.snackbar(
+                                "Otp",
+                                "Your Otp is ${_otpController.first + _otpController.second + _otpController.third + _otpController.fourth}",
+                              );
+                            } else {
+                              Get.snackbar("Eror", "Enter Otp");
+                            }
+                          },
+                          buttonName: "Next",
+                          color: ColorThemes.black0xff010101,
+                          height: 50,
+                          width: 100,
+                          radius: 0,
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 150,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Get.to(ForgotPasswordScreen());
-                    },
-                    child: Text(
-                      "send a new code",
-                      style: FontStyles.for16(
-                        fontColor: ColorThemes.black0xff010101,
-                        decoration: TextDecoration.underline,
-                        fontWeight: BoldFont.bold,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  CustomElevatedButton(
-                    onPressed: () {
-                      _otpController.first = _otpController
-                          .firstCharacterController.text
-                          .toString();
-                      _otpController.second = _otpController
-                          .secondCharacterController.text
-                          .toString();
-                      _otpController.third = _otpController
-                          .thirdCharacterController.text
-                          .toString();
-                      _otpController.fourth = _otpController
-                          .fourthCharacterController.text
-                          .toString();
-                      if (_otpController.first != "" &&
-                          _otpController.second != "" &&
-                          _otpController.third != "" &&
-                          _otpController.fourth != "") {
-                        Get.to(ShoppingPage());
-                      } else {
-                        Get.snackbar("Eror", "Enter Otp");
-                      }
-                    },
-                    buttonName: "Next",
-                    color: ColorThemes.black0xff010101,
-                    height: 50,
-                    width: 100,
-                    radius: 0,
-                  ),
                 ],
               ),
-            ),
+            )
           ],
         ),
       ),

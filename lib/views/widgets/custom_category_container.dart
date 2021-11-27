@@ -20,14 +20,15 @@ class CustomCategoryContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
-              blurRadius: 10,
+              blurRadius: 11,
+              offset: Offset(0, 70),
               color: ColorThemes.grey0xFF7F8185,
             ),
           ],
         ),
         child: Container(
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(25.0),
             child: Image.network(url!),
           ),
         ),
