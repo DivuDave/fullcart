@@ -8,6 +8,7 @@ class CustomProductListTile extends StatelessWidget {
   final String? color;
   final String? itemname;
   final bool? isInWishList;
+  final bool? isInCart;
 
   final String? price;
   const CustomProductListTile({
@@ -18,6 +19,7 @@ class CustomProductListTile extends StatelessWidget {
     this.itemname,
     this.price,
     this.isInWishList,
+    this.isInCart,
   }) : super(key: key);
 
   @override
@@ -45,90 +47,122 @@ class CustomProductListTile extends StatelessWidget {
               SizedBox(
                 width: 20,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 children: [
-                  Text(
-                    itemname!,
-                    style: FontStyles.for20(
-                      fontColor: ColorThemes.black0xff010101,
-                    ),
-                  ),
-                  Text(
-                    price!,
-                    style: FontStyles.for16(
-                      fontColor: ColorThemes.black0xff010101,
-                    ),
-                  ),
-                  Row(
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        age!,
-                        style: FontStyles.for14(
-                          fontColor: ColorThemes.grey0xFF7F8185,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 15,
-                          width: 3,
-                          color: ColorThemes.grey0xFF7F8185,
+                        itemname!,
+                        style: FontStyles.for20(
+                          fontColor: ColorThemes.black0xff010101,
                         ),
                       ),
                       Text(
-                        color!,
-                        style: FontStyles.for14(
-                          fontColor: ColorThemes.grey0xFF7F8185,
+                        price!,
+                        style: FontStyles.for16(
+                          fontColor: ColorThemes.black0xff010101,
                         ),
                       ),
-                    ],
-                  ),
-                  isInWishList == true
-                      ? SizedBox(
-                          height: 15,
-                        )
-                      : SizedBox(),
-                  isInWishList == true
-                      ? GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            height: 35,
-                            width: 110,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                color: ColorThemes.black0xff010101,
-                                width: 2,
-                              ),
-                              color: ColorThemes.white0xffffffff,
+                      Row(
+                        children: [
+                          Text(
+                            age!,
+                            style: FontStyles.for14(
+                              fontColor: ColorThemes.grey0xFF7F8185,
                             ),
-                            child: Center(
-                              child: Text(
-                                "Move To Bag",
-                                style: FontStyles.for14(
-                                  fontColor: ColorThemes.black0xff010101,
-                                  fontWeight: BoldFont.medium,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 15,
+                              width: 3,
+                              color: ColorThemes.grey0xFF7F8185,
+                            ),
+                          ),
+                          Text(
+                            color!,
+                            style: FontStyles.for14(
+                              fontColor: ColorThemes.grey0xFF7F8185,
+                            ),
+                          ),
+                        ],
+                      ),
+                      isInWishList == true
+                          ? SizedBox(
+                              height: 15,
+                            )
+                          : SizedBox(),
+                      isInWishList == true
+                          ? GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                height: 35,
+                                width: 110,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    color: ColorThemes.black0xff010101,
+                                    width: 2,
+                                  ),
+                                  color: ColorThemes.white0xffffffff,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Move To Bag",
+                                    style: FontStyles.for14(
+                                      fontColor: ColorThemes.black0xff010101,
+                                      fontWeight: BoldFont.medium,
+                                    ),
+                                  ),
                                 ),
                               ),
+                            )
+                          : SizedBox(),
+                      isInWishList == true
+                          ? SizedBox(
+                              height: 15,
+                            )
+                          : SizedBox(),
+                    ],
+                  ),
+                  isInCart == true
+                      ? Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: ColorThemes.lightGrey0xFFcfcfcf,
+                            ),
+                            height: 25,
+                            width: 100,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(Icons.add),
+                                Center(
+                                  child: Text("2"),
+                                ),
+                                Icon(
+                                  Icons.remove,
+                                ),
+                              ],
                             ),
                           ),
                         )
-                      : SizedBox(),
-                  isInWishList == true
-                      ? SizedBox(
-                          height: 15,
-                        )
-                      : SizedBox(),
+                      : SizedBox()
                 ],
               ),
             ],
           ),
-          isInWishList == true
-              ? Container(
-                  color: ColorThemes.lightGrey0xFFcfcfcf,
-                  height: 2,
-                  width: 380,
+          isInWishList == true || isInCart == true
+              ? Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    color: ColorThemes.lightGrey0xFFcfcfcf,
+                    height: 2,
+                    width: 380,
+                  ),
                 )
               : SizedBox(),
         ],

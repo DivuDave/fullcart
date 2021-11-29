@@ -265,6 +265,55 @@ class ShoppingPageController extends GetxController {
   List<CustomProductListTile> get customProductListTileList =>
       _customProductListTileList;
 
+  List<CustomProductListTile> _cartList = [
+    CustomProductListTile(
+      isInCart: true,
+      isInWishList: false,
+      price: "400/-",
+      itemname: "Tshirt",
+      color: "Color:Blue",
+      age: "Age:20",
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvQh_D1uiPxFOrTFwyHkqTOI5psBJ9k3LNOQ&usqp=CAU",
+    ),
+    CustomProductListTile(
+      isInCart: true,
+      isInWishList: false,
+      itemname: "T-shirt",
+      price: "350/-",
+      age: "Age:15",
+      color: "Color:Blue",
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgkPyawKRX3-9aoRICdB45fMjZEd69Dv3IzA&usqp=CAU",
+    ),
+    CustomProductListTile(
+      isInCart: true,
+      isInWishList: false,
+      itemname: "T-shirt",
+      price: "400/-",
+      age: "Age:22",
+      color: "Color:Peach",
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2K8R0CbMCuqFYVHnRF6RpNZjEa68ela5_ew&usqp=CAU",
+    ),
+    CustomProductListTile(
+      isInCart: true,
+      isInWishList: false,
+      age: "Age:25",
+      itemname: "jeans",
+      price: "500",
+      color: "Color:Blue",
+      url:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvne37gWiuwDFbnUtRzPAzrLc96BJrIJd8Ww&usqp=CAU",
+    ),
+  ];
+  set cartList(List<CustomProductListTile> cartList) {
+    _cartList = cartList;
+    update();
+  }
+
+  List<CustomProductListTile> get cartList => _cartList;
+
   List<CustomProductListTile> _wishList = [
     CustomProductListTile(
       isInWishList: true,

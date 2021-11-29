@@ -69,86 +69,121 @@ class Shipping extends StatelessWidget {
                   ),
                 ),
               ),
-              Column(
-                children: [
-                  CustomTextField(
-                    width: 350,
-                    controller: _shippingPageController.shippingNameController,
-                    onChanged: (value) {
-                      _shippingPageController.shippingName =
-                          _shippingPageController.shippingNameController.text
-                              .toString();
-                      _shippingPageController.update();
-                    },
-                    hintText: "full name",
-                    labelText: "full name",
-                    validator: (value) {
-                      if (!GetUtils.isAlphabetOnly(value!)) {
-                        return "Enter valid name";
-                      }
-                    },
-                  ),
-                  GetBuilder<ShippingPageController>(
-                    init: _shippingPageController,
-                    builder: (_) {
-                      return Row(
-                        children: [
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Text(
-                            _shippingPageController.shippingNameController.text
-                                        .toString() ==
-                                    ""
-                                ? "Enter name"
-                                : "",
-                            style: FontStyles.forError(
-                              fontColor: ColorThemes.red0xfff20812,
-                            ),
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                ],
+              GetBuilder<ShippingPageController>(
+                init: _shippingPageController,
+                builder: (_) {
+                  return Column(
+                    children: [
+                      CustomTextField(
+                        onTap: () {
+                          _shippingPageController.toggle1(
+                            type: ShippingPageControllerType.userFullName,
+                          );
+                        },
+                        onEditingComplete: () {
+                          _shippingPageController.toggle1(
+                            type: ShippingPageControllerType.userAddress,
+                          );
+                          return FocusScope.of(context).requestFocus(
+                            _shippingPageController.focusNodeForAddress,
+                          );
+                        },
+                        focusNode: _shippingPageController.focusNodeForFullName,
+                        width: 350,
+                        controller:
+                            _shippingPageController.shippingNameController,
+                        onChanged: (value) {
+                          _shippingPageController.shippingName =
+                              _shippingPageController
+                                  .shippingNameController.text
+                                  .toString();
+                          _shippingPageController.update();
+                        },
+                        hintText: "full name",
+                        labelText: "full name",
+                        validator: (value) {
+                          if (!GetUtils.isAlphabetOnly(value!)) {
+                            return "Enter valid name";
+                          }
+                        },
+                      ),
+                      _shippingPageController.isFocusedFullName == true
+                          ? Row(
+                              children: [
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                Text(
+                                  _shippingPageController
+                                              .shippingNameController.text
+                                              .toString() ==
+                                          ""
+                                      ? "Enter name"
+                                      : "",
+                                  style: FontStyles.forError(
+                                    fontColor: ColorThemes.red0xfff20812,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : SizedBox(),
+                    ],
+                  );
+                },
               ),
-              Column(
-                children: [
-                  CustomTextField(
-                    width: 350,
-                    controller: _shippingPageController.adressController,
-                    onChanged: (value) {
-                      _shippingPageController.address = _shippingPageController
-                          .adressController.text
-                          .toString();
-                      _shippingPageController.update();
-                    },
-                    hintText: "Address",
-                    labelText: "Address",
-                  ),
-                  GetBuilder<ShippingPageController>(
-                    init: _shippingPageController,
-                    builder: (_) {
-                      return Row(
-                        children: [
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Text(
-                            _shippingPageController.adressController.text
-                                        .toString() ==
-                                    ""
-                                ? "Enter Address"
-                                : "",
-                            style: FontStyles.forError(
-                              fontColor: ColorThemes.red0xfff20812,
-                            ),
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                ],
+              GetBuilder<ShippingPageController>(
+                init: _shippingPageController,
+                builder: (_) {
+                  return Column(
+                    children: [
+                      CustomTextField(
+                        onTap: () {
+                          _shippingPageController.toggle1(
+                            type: ShippingPageControllerType.userAddress,
+                          );
+                        },
+                        onEditingComplete: () {
+                          _shippingPageController.toggle1(
+                            type: ShippingPageControllerType.userZipCode,
+                          );
+                          return FocusScope.of(context).requestFocus(
+                            _shippingPageController.focusNodeForZipCode,
+                          );
+                        },
+                        focusNode: _shippingPageController.focusNodeForAddress,
+                        width: 350,
+                        controller: _shippingPageController.adressController,
+                        onChanged: (value) {
+                          _shippingPageController.address =
+                              _shippingPageController.adressController.text
+                                  .toString();
+                          _shippingPageController.update();
+                        },
+                        hintText: "Address",
+                        labelText: "Address",
+                      ),
+                      _shippingPageController.isFocusedAddress == true
+                          ? Row(
+                              children: [
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                Text(
+                                  _shippingPageController.adressController.text
+                                              .toString() ==
+                                          ""
+                                      ? "Enter Address"
+                                      : "",
+                                  style: FontStyles.forError(
+                                    fontColor: ColorThemes.red0xfff20812,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : SizedBox(),
+                    ],
+                  );
+                },
               ),
               Row(
                 children: [
@@ -232,46 +267,62 @@ class Shipping extends StatelessWidget {
                   ),
                   SizedBox(
                     width: 165,
-                    child: Column(
-                      children: [
-                        CustomTextField(
-                          controller:
-                              _shippingPageController.zipCodeContrroller,
-                          onChanged: (value) {
-                            _shippingPageController.zipCode =
-                                _shippingPageController.zipCodeContrroller.text
-                                    .toString();
-                            _shippingPageController.update();
-                          },
-                          hintText: "zipCode",
-                          labelText: "zipCode",
-                          validator: (value) {
-                            if (!GetUtils.isNumericOnly(value!)) {
-                              return "Enter valid Zipcode";
-                            }
-                          },
-                        ),
-                        GetBuilder<ShippingPageController>(
-                          init: _shippingPageController,
-                          builder: (_) {
-                            return Row(
-                              children: [
-                                Text(
-                                  _shippingPageController
-                                              .zipCodeContrroller.text
-                                              .toString() ==
-                                          ""
-                                      ? "Enter Zipcode"
-                                      : "",
-                                  style: FontStyles.forError(
-                                    fontColor: ColorThemes.red0xfff20812,
-                                  ),
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ],
+                    child: GetBuilder<ShippingPageController>(
+                      init: _shippingPageController,
+                      builder: (_) {
+                        return Column(
+                          children: [
+                            CustomTextField(
+                              onTap: () {
+                                _shippingPageController.toggle1(
+                                  type: ShippingPageControllerType.userZipCode,
+                                );
+                              },
+                              onEditingComplete: () {
+                                _shippingPageController.toggle1(
+                                  type: null,
+                                );
+                                return FocusScope.of(context).unfocus();
+                              },
+                              focusNode:
+                                  _shippingPageController.focusNodeForZipCode,
+                              controller:
+                                  _shippingPageController.zipCodeContrroller,
+                              onChanged: (value) {
+                                _shippingPageController.zipCode =
+                                    _shippingPageController
+                                        .zipCodeContrroller.text
+                                        .toString();
+                                _shippingPageController.update();
+                              },
+                              hintText: "zipCode",
+                              labelText: "zipCode",
+                              validator: (value) {
+                                if (!GetUtils.isNumericOnly(value!)) {
+                                  return "Enter valid Zipcode";
+                                }
+                              },
+                            ),
+                            _shippingPageController.isFocusedZipCode == true
+                                ? Row(
+                                    children: [
+                                      Text(
+                                        _shippingPageController
+                                                    .zipCodeContrroller.text
+                                                    .toString() ==
+                                                ""
+                                            ? "Enter Zipcode"
+                                            : "",
+                                        style: FontStyles.forError(
+                                          fontColor: ColorThemes.red0xfff20812,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : SizedBox(),
+                          ],
+                        );
+                      },
                     ),
                   ),
                   SizedBox(

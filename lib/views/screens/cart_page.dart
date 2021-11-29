@@ -52,6 +52,12 @@ class CartPage extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(
+              height: 10,
+            ),
+            Column(
+              children: _shoppingPageController.cartList,
+            )
           ],
         ),
       ),

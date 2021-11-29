@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
 import 'package:fullcart/views/screens/bottom_navigation_bars.dart';
-import 'package:fullcart/views/screens/home_screen/shopping_page.dart';
+import 'package:fullcart/views/widgets/custom_credit_card_container.dart';
 import 'package:fullcart/views/widgets/custom_elevated_button.dart';
 import 'package:get/get.dart';
 
@@ -65,25 +65,51 @@ class Payment extends StatelessWidget {
             SizedBox(
               height: 40,
             ),
-            Container(
-              child: Center(),
-              height: 230,
-              width: 360,
-              decoration: BoxDecoration(
-                color: ColorThemes.white0xffffffff,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 10,
-                    color: ColorThemes.grey0xFF7F8185,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  CustomCreditCardContainer(
+                    url:
+                        "http://storyv.com/wp-content/uploads/2019/02/discovery-gold-credit-card.png",
+                  ),
+                  CustomCreditCardContainer(
+                    url:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ19XQWLCNMLaQPw63tbaunAPUFiAimxz8OZg&usqp=CAU",
+                  ),
+                  CustomCreditCardContainer(
+                    url:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpX3cujvxRas5Xa1O_TI578YoevrrLsJlumg&usqp=CAU",
+                  ),
+                  CustomCreditCardContainer(
+                    url:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3ZpwWS22eMvWlxhYH_k_laQ1P4DPUPRK4tA&usqp=CAU",
+                  ),
+                  CustomCreditCardContainer(
+                    url:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe2S-Tmyv5mBLpEt7PItxQ4Mp9QYwlyHFR0A&usqp=CAU",
+                  ),
+                  CustomCreditCardContainer(
+                    url:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaCrp20apvBA-E9RrRcINFnkDQagAz-VwmjA&usqp=CAU",
+                  ),
+                  CustomCreditCardContainer(
+                    url:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi6RZX2UckIQVpbbjWYX7RutMEYd9GgHwISw&usqp=CAU",
+                  ),
+                  CustomCreditCardContainer(
+                    url:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrCEeL5sR-CffJHAJq8nlausrHbyKuQ-piXA&usqp=CAU",
+                  ),
+                  CustomCreditCardContainer(
+                    url:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS085vDVS3quk9w6azJenljZOohLAQVrbBB1Q&usqp=CAU",
+                  ),
+                  CustomCreditCardContainer(
+                    url:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCF0aJ9s6IIH5bnKDpbb1pHvJJdz6rLILH1g&usqp=CAU",
                   ),
                 ],
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                    "http://storyv.com/wp-content/uploads/2019/02/discovery-gold-credit-card.png",
-                  ),
-                ),
               ),
             ),
             SizedBox(
@@ -105,7 +131,7 @@ class Payment extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.contain,
                   image: NetworkImage(
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2bTdYdSx7aMz1iE4eknnxG1lYtt1KtjLxTQ&usqp=CAU",
+                    "https://www.pikpng.com/pngl/m/429-4298319_paypal-quiere-aumentar-la-velocidad-de-las-transacciones.png",
                   ),
                 ),
                 border: Border.all(
@@ -125,7 +151,7 @@ class Payment extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.contain,
                   image: NetworkImage(
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2IqdD1V3_EXP5BowPuXuBjFw6uBQKYvUfzw&usqp=CAU",
+                    "https://cdn-icons-png.flaticon.com/128/5977/5977576.png",
                   ),
                 ),
                 border: Border.all(

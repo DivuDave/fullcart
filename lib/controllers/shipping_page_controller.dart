@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+enum ShippingPageControllerType {
+  userFullName,
+  userAddress,
+  userZipCode,
+}
+
 class ShippingPageController extends GetxController {
   TextEditingController adressController = TextEditingController();
   TextEditingController cityController = TextEditingController();
@@ -9,9 +15,55 @@ class ShippingPageController extends GetxController {
   TextEditingController shippingMethodController = TextEditingController();
   TextEditingController shippingNameController = TextEditingController();
   bool? checkValue = false;
+  final FocusNode focusNodeForFullName = FocusNode();
+  final FocusNode focusNodeForAddress = FocusNode();
+  final FocusNode focusNodeForZipCode = FocusNode();
+  bool _isFocusedFullName = false;
+  set isFocusedFullName(bool value) {
+    _isFocusedFullName = value;
+    update();
+  }
+
+  bool get isFocusedFullName => _isFocusedFullName;
+  bool _isFocusedAddress = false;
+  set isFocusedAddress(bool value) {
+    _isFocusedAddress = value;
+    update();
+  }
+
+  bool get isFocusedAddress => _isFocusedAddress;
+
+  bool _isFocusedZipCode = false;
+  set isFocusedZipCode(bool value) {
+    _isFocusedZipCode = value;
+    update();
+  }
+
+  bool get isFocusedZipCode => _isFocusedZipCode;
+
   String? _cityDropdownValue = "surat";
   set cityDropdownValue(String cityDropdownValue) {
     _cityDropdownValue = cityDropdownValue;
+    update();
+  }
+
+  toggle1({ShippingPageControllerType? type}) {
+    isFocusedFullName = false;
+    isFocusedAddress = false;
+    isFocusedZipCode = false;
+    if (type != null) {
+      switch (type) {
+        case ShippingPageControllerType.userFullName:
+          isFocusedFullName = true;
+          break;
+        case ShippingPageControllerType.userAddress:
+          isFocusedAddress = true;
+          break;
+        case ShippingPageControllerType.userZipCode:
+          isFocusedZipCode = true;
+          break;
+      }
+    }
     update();
   }
 
