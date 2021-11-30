@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fullcart/controllers/login_controller.dart';
 import 'package:fullcart/utilities/color_utilities.dart';
 import 'package:fullcart/utilities/style_utilities.dart';
 import 'package:fullcart/views/auth/login_screen.dart';
@@ -8,7 +9,8 @@ import 'package:get/get.dart';
 
 class TutorialForTopBrands extends StatelessWidget {
   TutorialForTopBrands({Key? key}) : super(key: key);
-
+  final LoginController _loginController =
+      Get.find(tag: LoginController().toString());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

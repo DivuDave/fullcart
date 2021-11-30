@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
   final GlobalKey<FormState> formkey1 = GlobalKey<FormState>();
   final LoginController _loginController =
-      Get.find(tag: LoginController().toString());
+      Get.put(LoginController(), tag: LoginController().toString());
 
   @override
   Widget build(BuildContext context) {

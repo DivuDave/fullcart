@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fullcart/controllers/filter_controller.dart';
 import 'package:fullcart/controllers/focus_controller.dart';
+import 'package:fullcart/controllers/login_controller.dart';
 import 'package:fullcart/controllers/radio_controller.dart';
 import 'package:fullcart/controllers/shipping_page_controller.dart';
 import 'package:fullcart/controllers/sign_up_controller.dart';
@@ -25,6 +26,8 @@ class MyApp extends StatelessWidget {
       Get.put(FocusController(), tag: FocusController().toString());
   final FilterController _filterController =
       Get.put(FilterController(), tag: FilterController().toString());
+  final LoginController _loginController =
+      Get.put(LoginController(), tag: LoginController().toString());
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

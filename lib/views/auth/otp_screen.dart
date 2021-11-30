@@ -18,139 +18,167 @@ class OtpScreen extends StatelessWidget {
       Get.find(tag: LoginController().toString());
   final OtpController _otpController =
       Get.put(OtpController(), tag: OtpController().toString());
-
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorThemes.white0xffffffff,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            Row(
+    return GetBuilder<OtpController>(
+      init: _otpController,
+      builder: (_) {
+        return Scaffold(
+          key: scaffoldKey,
+          backgroundColor: ColorThemes.white0xffffffff,
+          body: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: Icon(
-                    Icons.navigate_before,
-                    size: 30,
+                SizedBox(
+                  height: 40,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 25,
+                    vertical: 20,
+                  ),
+                  child: IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: Icon(Icons.arrow_back),
                   ),
                 ),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Center(
-              child: Column(
-                children: [
-                  Text(
-                    "Enter the Code",
-                    style: FontStyles.for20(
-                      fontColor: ColorThemes.black0xff010101,
+                 SizedBox(
+                  height: 40,
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: Icon(
+                        Icons.navigate_before,
+                        size: 30,
+                      ),
                     ),
-                  ),
-                  Text(
-                    "to Verify Your Phone",
-                    style: FontStyles.for20(
-                      fontColor: ColorThemes.black0xff010101,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    "we have sent you an SMS with a code to",
-                    style: FontStyles.for16(
-                      fontColor: ColorThemes.black0xff010101,
-                    ),
-                  ),
-                  GetBuilder(
-                    init: _forgotPasswordController,
-                    builder: (_) {
-                      return Text(
-                        "the number ${_forgotPasswordController.forgotPasswordPhoneNumberController.text}",
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        "Enter the Code",
+                        style: FontStyles.for20(
+                          fontColor: ColorThemes.black0xff010101,
+                        ),
+                      ),
+                      Text(
+                        "to Verify Your Phone",
+                        style: FontStyles.for20(
+                          fontColor: ColorThemes.black0xff010101,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Text(
+                        "we have sent you an SMS with a code to",
                         style: FontStyles.for16(
                           fontColor: ColorThemes.black0xff010101,
                         ),
-                      );
-                    },
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Center(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 30,
-                        ),
-                        CustomOtpField(),
-                        SizedBox(
-                          height: 130,
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Get.to(ForgotPasswordScreen());
-                          },
-                          child: Text(
-                            "send a new code",
+                      ),
+                      GetBuilder(
+                        init: _forgotPasswordController,
+                        builder: (_) {
+                          return Text(
+                            "the number ${_forgotPasswordController.forgotPasswordPhoneNumberController.text}",
                             style: FontStyles.for16(
                               fontColor: ColorThemes.black0xff010101,
-                              decoration: TextDecoration.underline,
-                              fontWeight: BoldFont.bold,
                             ),
-                          ),
+                          );
+                        },
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Center(
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 30,
+                            ),
+                            CustomOtpField(
+                              onOtpSubmitted: (String otp) {
+                                Get.snackbar(
+                                  "Otp",
+                                  """
+    Your Otp is ${_otpController.first + _otpController.second + _otpController.third + _otpController.fourth}""",
+                                );
+                              },
+                            ),
+                            SizedBox(
+                              height: 130,
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Get.to(ForgotPasswordScreen());
+                              },
+                              child: Text(
+                                "send a new code",
+                                style: FontStyles.for16(
+                                  fontColor: ColorThemes.black0xff010101,
+                                  decoration: TextDecoration.underline,
+                                  fontWeight: BoldFont.bold,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            CustomElevatedButton(
+                              onPressed: () {
+                                _otpController.first = _otpController
+                                    .firstCharacterController.text
+                                    .toString();
+                                _otpController.second = _otpController
+                                    .secondCharacterController.text
+                                    .toString();
+                                _otpController.third = _otpController
+                                    .thirdCharacterController.text
+                                    .toString();
+                                _otpController.fourth = _otpController
+                                    .fourthCharacterController.text
+                                    .toString();
+                                if (_otpController.first != "" &&
+                                    _otpController.second != "" &&
+                                    _otpController.third != "" &&
+                                    _otpController.fourth != "") {
+                                  Get.to(ShoppingPage());
+                                } else {
+                                  Get.snackbar("Eror", "Enter Otp");
+                                }
+                              },
+                              buttonName: "Next",
+                              color: ColorThemes.black0xff010101,
+                              height: 50,
+                              width: 100,
+                              radius: 0,
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        CustomElevatedButton(
-                          onPressed: () {
-                            _otpController.first = _otpController
-                                .firstCharacterController.text
-                                .toString();
-                            _otpController.second = _otpController
-                                .secondCharacterController.text
-                                .toString();
-                            _otpController.third = _otpController
-                                .thirdCharacterController.text
-                                .toString();
-                            _otpController.fourth = _otpController
-                                .fourthCharacterController.text
-                                .toString();
-                            if (_otpController.first != "" &&
-                                _otpController.second != "" &&
-                                _otpController.third != "" &&
-                                _otpController.fourth != "") {
-                              Get.to(ShoppingPage());
-                              Get.snackbar(
-                                "Otp",
-                                "Your Otp is ${_otpController.first + _otpController.second + _otpController.third + _otpController.fourth}",
-                              );
-                            } else {
-                              Get.snackbar("Eror", "Enter Otp");
-                            }
-                          },
-                          buttonName: "Next",
-                          color: ColorThemes.black0xff010101,
-                          height: 50,
-                          width: 100,
-                          radius: 0,
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

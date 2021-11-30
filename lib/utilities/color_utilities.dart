@@ -22,5 +22,6 @@ class ColorThemes {
   static const Color snow0xfffdfcfa = Color(0xfffdfcfa);
   static const Color pinks0xfff397a8 = Color(0xfff397a8);
   static const Color brown0xffcba493 = Color(0xffcba493);
+  static const Color green0xE7209242 = Color(0xE7209242);
   static const Color darkGreen0xff5f4920 = Color(0xff5f4920);
 }
